@@ -25,6 +25,14 @@ MonoBehaviour:
     m_Address: Assets/Scenes/SampleScene.unity
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: cc7bb55d053bb8a4084df202e998e405
+    m_Address: Assets/Scenes/Bundles/SceneBundle_Haleksi 1.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7f67c515c390f2142818fe9158b62aa5
+    m_Address: Assets/Scenes/Hogu.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 0a039f5dd772e6b458527b0985523f87, type: 2}
   m_SchemaSet:
