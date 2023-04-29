@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03fbf1b5b92e20b4185bb9dde1ac1937, type: 3}
+  m_Name: Player Inputs
+  m_EditorClassIdentifier: 
+  AccelerationInput:
+    m_Name: Acceleration Input
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 38c462bf-2944-4dc3-9fe8-e3cb75bf3200
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: ae4c5ab5-ecb1-4e2a-8047-9d597aabeec3
+      m_Path: <Gamepad>/rightTrigger
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Acceleration Input
+      m_Flags: 0
+    m_Flags: 0
+  DirectionInput:
+    m_Name: Direction Input
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 35009e39-0f56-4f8d-a83b-eb613719d542
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 3e0c79d0-f5ac-4a88-803e-6407b98567d1
+      m_Path: <Gamepad>/leftStick
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Direction Input
+      m_Flags: 0
+    m_Flags: 0

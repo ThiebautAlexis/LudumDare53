@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SceneBundle_Haleksi
   m_EditorClassIdentifier: 
   ScenesReferences:
-  - m_AssetGUID: 8c9cfa26abfee488c85f1582747f6a02
+  - m_AssetGUID: 34f532387f9357a4d8b67e10550295ec
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0

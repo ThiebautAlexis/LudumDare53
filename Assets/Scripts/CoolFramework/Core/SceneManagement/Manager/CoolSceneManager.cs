@@ -11,6 +11,7 @@ namespace CoolFramework.SceneManagement
         #region Fields and Properties
         public override UpdateRegistration UpdateRegistration => UpdateRegistration.Init ;
 
+        [SerializeField] private bool loadFirstScene; 
         [SerializeField] private SceneBundle firstLoadedSceneBundle;
         [SerializeField] private LoadingBehaviour defaultLoadingBehaviour;
         #endregion
@@ -115,7 +116,8 @@ namespace CoolFramework.SceneManagement
         protected override void OnInit()
         {
             base.OnInit();
-            StartCoroutine(LoadSceneBundle(firstLoadedSceneBundle, LoadSceneMode.Additive));
+            if(loadFirstScene)
+                StartCoroutine(LoadSceneBundle(firstLoadedSceneBundle, LoadSceneMode.Additive));
         }
         #endregion
     }

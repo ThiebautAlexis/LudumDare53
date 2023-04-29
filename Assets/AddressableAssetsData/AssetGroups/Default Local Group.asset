@@ -17,8 +17,8 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 9203f7f9677e85e4d844270abc47473a
   m_SerializeEntries:
-  - m_GUID: f2952e97e673b634dbad82d94bb4a375
-    m_Address: Assets/Scenes/Bundles/SceneBundle_Haleksi.asset
+  - m_GUID: 34f532387f9357a4d8b67e10550295ec
+    m_Address: Assets/Scenes/Haleksi_Test.unity
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 8c9cfa26abfee488c85f1582747f6a02
