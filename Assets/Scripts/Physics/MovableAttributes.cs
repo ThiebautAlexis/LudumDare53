@@ -34,8 +34,8 @@ public class MovableAttributes : ScriptableObject
 
     public Vector2 DampRotation(Vector2 _currentRotation, Vector2 _movement, float _magnitude)
     {
-        Vector2 _direction = _currentRotation;
-        Vector2.SmoothDamp(_currentRotation.normalized, _movement.normalized, ref _direction, rotationDamping); 
+        Vector2 _velocity = Vector2.zero; 
+        Vector2 _direction = Vector2.SmoothDamp(_currentRotation.normalized, _movement.normalized, ref _velocity, Time.deltaTime * rotationDamping);
         return _direction * _magnitude; 
         /*
         Debug.Log(_currentRotation + " => " + _movement);

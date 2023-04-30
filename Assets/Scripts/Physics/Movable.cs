@@ -62,17 +62,17 @@ public class Movable : CoolBehaviour, IUpdate, IDynamicUpdate
     [SerializeField] private float driftForce = 0f; 
     private void ComputeVelocity()
     {
-        currentSpeed = attributes.EvaluateSpeed(ref accelerationTime);
         if (isInAcceleration)
             accelerationTime += Time.deltaTime;
         else 
             accelerationTime -= Time.deltaTime * attributes.DecelerationRate;
 
+        currentSpeed = attributes.EvaluateSpeed(ref accelerationTime);
 
-        if (movement == Vector2.zero) movement = transform.right; 
+        if (movement.magnitude == 0f) movement = transform.right; 
         movement = attributes.DampRotation(transform.right, movement.normalized, currentSpeed * movementMagnitude);
         
-        driftForce = -Vector2.Dot(transform.up, movement) * attributes.InertiaCoefficient;
+        driftForce = Vector2.Dot(-transform.up, movement) * attributes.InertiaCoefficient;
         AddForce(transform.up * driftForce * attributes.InertiaCoefficient);
 
 
