@@ -17,17 +17,19 @@ public class ColisSpawner : MonoBehaviour
     }
 
 
-    public void SpawnColis()
+    public Colis SpawnColis()
     {
         Colis _colisToSpawn = allColis[Random.Range(0, allColis.Count)];
 
         if (!_colisToSpawn)
-            return;
+            return null;
 
-        Colis _spawnedColis = Instantiate(_colisToSpawn, colisSpawnPosition, Quaternion.identity);
+        Colis _spawnedColis = Instantiate(_colisToSpawn, (Vector2)transform.position + colisSpawnPosition, Quaternion.identity);
         _spawnedColis.transform.parent = transform;
 
         AvailableForSpawn = false;
+
+        return _spawnedColis;
     }
 
     public void ColisPickedUp()

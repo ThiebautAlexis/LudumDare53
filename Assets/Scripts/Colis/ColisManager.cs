@@ -9,6 +9,7 @@ public class ColisManager : CoolSingleton<ColisManager>, IUpdate
 
     [SerializeField] private AnimationCurve colisSpawnRate;
     private List<ColisSpawner> allColisSpawners = new List<ColisSpawner>();
+    private List<ColisArea> allColisAreas = new List<ColisArea>();
 
     private int currentColisInGame = 0;
     private float currentGameDuration = 0;
@@ -20,6 +21,9 @@ public class ColisManager : CoolSingleton<ColisManager>, IUpdate
 
         allColisSpawners.Clear();
         allColisSpawners.AddRange(FindObjectsOfType<ColisSpawner>());
+
+        allColisAreas.Clear();
+        allColisAreas.AddRange(FindObjectsOfType<ColisArea>());
     }
 
     void IUpdate.Update()
@@ -53,7 +57,12 @@ public class ColisManager : CoolSingleton<ColisManager>, IUpdate
         {
             if(_spawner.AvailableForSpawn)
             {
-                _spawner.SpawnColis();
+                Colis _spawnedColis = _spawner.SpawnColis();
+
+                if (!_spawnedColis)
+                    continue;
+
+                _spawnedColis.RegisterDestination(allColisAreas[Random.Range(0, allColisAreas.Count)]);
                 currentColisInGame++;
                 break;
             }

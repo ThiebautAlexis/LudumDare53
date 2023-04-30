@@ -167,6 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d91236a41876354ebe8387f7a871788, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loadFirstScene: 0
   firstLoadedSceneBundle: {fileID: 11400000, guid: cc7bb55d053bb8a4084df202e998e405, type: 2}
   defaultLoadingBehaviour: {fileID: 11400000, guid: c2c089e6901439a41ba548e3f87a72f5, type: 2}
 --- !u!4 &33361443
@@ -288,7 +289,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 55
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
