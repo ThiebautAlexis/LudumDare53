@@ -18,9 +18,10 @@ public class Colis : CoolBehaviour, IUpdate
 
         spawnOrigin = GetComponentInParent<ColisSpawner>();
 
-        InvokeRepeating("Pickup", 0, 4);
+        //DEBUG
+        //InvokeRepeating("Pickup", 0, 4);
 
-        InvokeRepeating("Release", 2, 4);
+        //InvokeRepeating("Release", 2, 4);
     }
 
     void IUpdate.Update()

@@ -258,9 +258,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9809eb0db45c7c45a8133aaa0d6f30c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rigidbody: {fileID: 8003130242645423811}
+  attributes: {fileID: 11400000, guid: bd0c42fcfaf3d8041bfb4aaf90c669ab, type: 2}
+  collider:
+    collider: {fileID: 0}
+    CollisionMask: 0
+  currentSpeed: 0
+  movement: {x: 0, y: 0}
+  lastMovement: {x: 0, y: 0}
+  forces: {x: 0, y: 0}
+  collisionLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  bounciness: 1
+  attachPoint: {fileID: 0}
   distanceFrompreviousCart: 1.2
-  backColisCartJoint: {fileID: 5808981848117321869}
-  linkedCartJoint: {fileID: 0}
+  linkedCart: {fileID: 0}
 --- !u!1 &7205825452605243233
 GameObject:
   m_ObjectHideFlags: 0

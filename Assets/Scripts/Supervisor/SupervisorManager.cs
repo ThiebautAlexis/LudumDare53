@@ -6,17 +6,13 @@ public class SupervisorManager : CoolSingleton<SupervisorManager>
 {
     public override UpdateRegistration UpdateRegistration => UpdateRegistration.Init;
 
-    private List<Supervisor> allSupervisors = new List<Supervisor>();
+    public Supervisor CurrentActiveSupervisor { get; private set; }  = null;
 
     private int playerStrikes = 0;
 
-    protected override void OnInit()
-    {
-        base.OnInit();
+    public void RegisterCurrentActiveSupervisor(Supervisor _supervisor) => CurrentActiveSupervisor = _supervisor;
 
-        allSupervisors.Clear();
-        allSupervisors.AddRange(FindObjectsOfType<Supervisor>());
-    }
+    public void RemoveCurrentSupervisor() => CurrentActiveSupervisor = null;
 
     /// <summary>
     /// Call if there is an error made
@@ -24,7 +20,7 @@ public class SupervisorManager : CoolSingleton<SupervisorManager>
     /// <param name="_isForceStrike">true if the strike should pass no matter the sight of any Supervisor</param>
     public void RegisterStrike(bool _isForceStrike = false)
     {
-        if (!_isForceStrike && !allSupervisors.Any(_supervisor => _supervisor.HasPlayerNearby))
+        if (!_isForceStrike && !CurrentActiveSupervisor && !CurrentActiveSupervisor.HasPlayerNearby)
             return;
 
         playerStrikes++;
