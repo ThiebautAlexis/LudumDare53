@@ -24,7 +24,10 @@ public abstract class Movable : CoolBehaviour, IUpdate, IDynamicUpdate
     private float driftForce = 0f;
     [Header("Collisions")]
     [SerializeField] private LayerMask collisionLayer; 
-    [SerializeField] private float bounciness = 1.0f;  
+    [SerializeField] private float bounciness = 1.0f;
+
+    [Header("Attach")]
+    [SerializeField] private Transform attachPoint; 
 
     public Rigidbody2D Rigidbody => rigidbody; 
     public MovableCollider Collider => collider;
@@ -35,8 +38,9 @@ public abstract class Movable : CoolBehaviour, IUpdate, IDynamicUpdate
     public Vector2 Movement => movement * Time.deltaTime; 
     public Vector2 Forces => forces * Time.deltaTime;
 
-    public float CurrentSpeed => currentSpeed; 
+    public float CurrentSpeed => currentSpeed;
 
+    public Vector2 AttachPosition => attachPoint.position; 
     #endregion
 
     #region Overriden Methods
@@ -56,6 +60,7 @@ public abstract class Movable : CoolBehaviour, IUpdate, IDynamicUpdate
     /// </summary>
     private void MovableUpdate()
     {
+        forces = Vector2.MoveTowards(forces, Vector2.zero, attributes.DriftCoefficient * Time.deltaTime);
         if(RawVelocity != Vector2.zero)
         {
             Vector2 _lastPosition = rigidbody.position; 
@@ -66,7 +71,6 @@ public abstract class Movable : CoolBehaviour, IUpdate, IDynamicUpdate
         }
 
         movement.Set(0f, 0f);
-        forces = Vector2.MoveTowards(forces, Vector2.zero, attributes.DriftCoefficient * Time.deltaTime);
     }
 
     /// <summary>

@@ -34,7 +34,11 @@ public class MovableAttributes : ScriptableObject
         _duration = Mathf.Clamp(_duration, 0f, accelerationDuration); 
         return accelerationCurve.Evaluate(_duration / accelerationDuration) * maxSpeed; 
     }
-
+    public float EvaluateSpeed(float _duration)
+    {
+        _duration = Mathf.Clamp(_duration, 0f, accelerationDuration);
+        return accelerationCurve.Evaluate(_duration / accelerationDuration) * maxSpeed;
+    }
     public Vector2 DampRotation(Vector2 _currentRotation, Vector2 _movement, float _magnitude)
     {
         Vector2 _velocity = Vector2.zero; 

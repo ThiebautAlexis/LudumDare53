@@ -10,11 +10,12 @@ public class ColisCart : Movable
 
     protected override void ComputeVelocity()
     {
-        if (linkedCart == null) return; 
-        currentSpeed = linkedCart.CurrentSpeed; 
-        Vector2 _direction = (linkedCart.Rigidbody.position - Rigidbody.position); 
-        AddForce(_direction - _direction.normalized * distanceFrompreviousCart);
-        base.ComputeVelocity();
+        if (linkedCart == null) return;
+        currentSpeed = attributes.EvaluateSpeed(0f); 
+        Vector2 _direction = (linkedCart.AttachPosition - Rigidbody.position);
+        AddForce(_direction);
+        //forces = Vector2.ClampMagnitude(forces, _direction.magnitude * (1 + distanceFrompreviousCart));
+
         //transform.position = linkedCartJoint.position - (linkedCartJoint.parent.up * distanceFrompreviousCart);
     }
 
@@ -26,9 +27,14 @@ public class ColisCart : Movable
             Gizmos.DrawLine(transform.position, linkedCart.Rigidbody.position);
 
             Gizmos.color = Color.green;
-            Vector2 _direction = (linkedCart.Rigidbody.position - Rigidbody.position);
-            Gizmos.DrawRay(transform.position, _direction - _direction * distanceFrompreviousCart);
+            Vector2 _direction = (linkedCart.AttachPosition - Rigidbody.position);
+            Gizmos.DrawRay(transform.position, _direction);
         }
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(transform.position, (Vector2)transform.position + Velocity);
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(transform.position, (Vector2)transform.position + forces);
     }
 
     public void AttachCartTo(Movable _jointAttachment)

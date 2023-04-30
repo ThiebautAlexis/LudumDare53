@@ -483,6 +483,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3940021485669715024, guid: 82a2402fbf850084799223d5ac1dfa8c, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3940021485669715025, guid: 82a2402fbf850084799223d5ac1dfa8c, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -531,6 +535,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Package Cart
       objectReference: {fileID: 0}
+    - target: {fileID: 3940021485669715030, guid: 82a2402fbf850084799223d5ac1dfa8c, type: 3}
+      propertyPath: attributes
+      value: 
+      objectReference: {fileID: 11400000, guid: bd0c42fcfaf3d8041bfb4aaf90c669ab, type: 2}
     - target: {fileID: 3940021485669715030, guid: 82a2402fbf850084799223d5ac1dfa8c, type: 3}
       propertyPath: linkedCart
       value: 
