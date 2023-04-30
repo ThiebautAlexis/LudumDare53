@@ -2,29 +2,9 @@ using CoolFramework.Core;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Supervisor : Trigger, IUpdate
+public class Supervisor : Trigger
 {
-    public override UpdateRegistration UpdateRegistration => UpdateRegistration.Init | UpdateRegistration.Update;
-
-    [SerializeField] private UnityEvent onEnableSupervisor;
-    [SerializeField] private UnityEvent onDisableSupervisor;
-
-    [SerializeField] private float durationAfterExitInSeconds = 15;
-    private float currentExitTimer = 0;
-
     public bool HasPlayerNearby { get; private set; } = false;
-
-
-    void IUpdate.Update()
-    {
-        if (!HasPlayerNearby)
-            return;
-
-        currentExitTimer += Time.deltaTime;
-
-        if(currentExitTimer >= durationAfterExitInSeconds)
-            DisableSupervisor();
-    }
 
     public override void OnEnter(Movable _movable)
     {
@@ -33,7 +13,7 @@ public class Supervisor : Trigger, IUpdate
         if (!_movable.GetComponent<PlayerController>())
             return;
 
-        EnableSupervisor();
+        SetPlayerNearby(true);
     }
 
     public override void OnExit(Movable _movable)
@@ -43,22 +23,11 @@ public class Supervisor : Trigger, IUpdate
         if (!_movable.GetComponent<PlayerController>())
             return;
 
-        DisableSupervisor();
+        SetPlayerNearby(false);
     }
 
-    private void EnableSupervisor()
+    public void SetPlayerNearby(bool _isPlayerNearby)
     {
-        HasPlayerNearby = true;
-        currentExitTimer = 0;
-
-        onEnableSupervisor?.Invoke();
-    }
-
-    private void DisableSupervisor()
-    {
-        HasPlayerNearby = false;
-        currentExitTimer = 0;
-
-        onDisableSupervisor?.Invoke();
+        HasPlayerNearby = _isPlayerNearby;
     }
 }
