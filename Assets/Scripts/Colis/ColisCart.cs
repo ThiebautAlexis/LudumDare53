@@ -1,4 +1,5 @@
 using CoolFramework.Core;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ColisCart : Movable
@@ -12,8 +13,10 @@ public class ColisCart : Movable
     {
         if (linkedCart == null) return;
         currentSpeed = attributes.EvaluateSpeed(0f); 
-        Vector2 _direction = (linkedCart.AttachPosition - Rigidbody.position);
-        AddForce(_direction);
+        Vector2 _direction = (linkedCart.AttachPosition - Rigidbody.position) * currentSpeed;
+        AddMovement(_direction);
+        //if(movement.magnitude > 0f)
+            //base.ComputeVelocity();
         //forces = Vector2.ClampMagnitude(forces, _direction.magnitude * (1 + distanceFrompreviousCart));
 
         //transform.position = linkedCartJoint.position - (linkedCartJoint.parent.up * distanceFrompreviousCart);
@@ -36,6 +39,15 @@ public class ColisCart : Movable
         Gizmos.color = Color.red;
         Gizmos.DrawLine(transform.position, (Vector2)transform.position + forces);
     }
+
+    protected override void RefreshRotation()
+    {
+        if (movement.magnitude <= attributes.MinMagnitudeRotation) return;
+        Quaternion _rot = Quaternion.LookRotation(Vector3.forward, Vector2.Perpendicular(linkedCart.Rigidbody.position - Rigidbody.position));
+        transform.rotation = _rot;
+    }
+
+    protected override void OnAppliedVelocity(Vector2 _velocity, Vector2 _displacement, List<RaycastHit2D> _buffer){}
 
     public void AttachCartTo(Movable _jointAttachment)
     {

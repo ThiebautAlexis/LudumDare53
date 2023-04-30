@@ -33,12 +33,5 @@ public class PlayerMovable : Movable
         currentSpeed = attributes.EvaluateSpeed(ref accelerationTime);
         base.ComputeVelocity();
     }
-
-    protected override void RefreshRotation()
-    { 
-        if (movement.magnitude <= attributes.MinMagnitudeRotation) return;
-        Quaternion _rot = Quaternion.LookRotation(Vector3.forward, Vector2.Perpendicular(movement));
-        transform.rotation = _rot;
-    }
     #endregion 
 }

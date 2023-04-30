@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a0dfd61aceb07d42b927deb2c7604f8, type: 3}
   m_Name: Movable Attributes Package
   m_EditorClassIdentifier: 
-  maxSpeed: 20
+  maxSpeed: 15
   accelerationDuration: 0.9
   decelerationRate: 2
   accelerationCurve:
@@ -41,5 +41,5 @@ MonoBehaviour:
     m_RotationOrder: 4
   rotationDamping: 10
   minMagnitudeRotation: 0.1
-  inertiaCoefficient: 1.2
+  inertiaCoefficient: 0
   driftCoefficient: 1

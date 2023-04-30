@@ -79,7 +79,7 @@ public abstract class Movable : CoolBehaviour, IUpdate, IDynamicUpdate
     /// <param name="_velocity">Velocity applied theorically</param>
     /// <param name="_displacement">Displacement applied to the movable</param>
     /// <param name="_buffer">Hit obstacles</param>
-    private void OnAppliedVelocity(Vector2 _velocity, Vector2 _displacement, List<RaycastHit2D> _buffer)
+    protected virtual void OnAppliedVelocity(Vector2 _velocity, Vector2 _displacement, List<RaycastHit2D> _buffer)
     {
         RaycastHit2D _hit;
         // Iterate over collision buffer to find encountered obstacles.
@@ -192,7 +192,12 @@ public abstract class Movable : CoolBehaviour, IUpdate, IDynamicUpdate
         }
     }
 
-    protected virtual void RefreshRotation(){ }
+    protected virtual void RefreshRotation()
+    {
+        if (movement.magnitude <= attributes.MinMagnitudeRotation) return;
+        Quaternion _rot = Quaternion.LookRotation(Vector3.forward, Vector2.Perpendicular(movement));
+        transform.rotation = _rot;
+    }
 
     private void OnDrawGizmos()
     {
