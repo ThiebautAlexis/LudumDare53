@@ -637,7 +637,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 1281207606}
+  rankImage: {fileID: 1990743347}
+  rankLibrary: {fileID: 7108339969198208228, guid: 6db92da5a61980f439e7dd8172489f82, type: 3}
   scoreDisplaySpeed: 400
+  comboRequirementCD: 20
+  comboRequirementBD: 25
+  comboRequirementAD: 30
+  comboRequirementSD: 35
+  comboRequirementSSD: 40
+  comboRequirementDK: 45
 --- !u!1001 &883828832
 PrefabInstance:
   m_ObjectHideFlags: 0
