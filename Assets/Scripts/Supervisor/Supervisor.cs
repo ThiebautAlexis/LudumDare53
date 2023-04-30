@@ -2,25 +2,22 @@ using CoolFramework.Core;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Supervisor : CoolBehaviour, IUpdate
+public class Supervisor : Trigger, IUpdate
 {
     public override UpdateRegistration UpdateRegistration => UpdateRegistration.Init | UpdateRegistration.Update;
 
     [SerializeField] private UnityEvent onEnableSupervisor;
     [SerializeField] private UnityEvent onDisableSupervisor;
 
-    [SerializeField] private float supervisorDetectionRange = 10;
-    [SerializeField] private LayerMask playerLayer;
-
     [SerializeField] private float durationAfterExitInSeconds = 15;
     private float currentExitTimer = 0;
 
-    private bool hasPlayerNearby = false;
+    public bool HasPlayerNearby { get; private set; } = false;
 
 
     void IUpdate.Update()
     {
-        if (!hasPlayerNearby)
+        if (!HasPlayerNearby)
             return;
 
         currentExitTimer += Time.deltaTime;
@@ -29,25 +26,29 @@ public class Supervisor : CoolBehaviour, IUpdate
             DisableSupervisor();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public override void OnEnter(Movable _movable)
     {
+        base.OnEnter(_movable);
+
+        if (!_movable.GetComponent<PlayerController>())
+            return;
+
         EnableSupervisor();
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    public override void OnExit(Movable _movable)
     {
-        DisableSupervisor();
-    }
+        base.OnExit(_movable);
 
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, supervisorDetectionRange);
+        if (!_movable.GetComponent<PlayerController>())
+            return;
+
+        DisableSupervisor();
     }
 
     private void EnableSupervisor()
     {
-        hasPlayerNearby = true;
+        HasPlayerNearby = true;
         currentExitTimer = 0;
 
         onEnableSupervisor?.Invoke();
@@ -55,21 +56,9 @@ public class Supervisor : CoolBehaviour, IUpdate
 
     private void DisableSupervisor()
     {
-        hasPlayerNearby = false;
+        HasPlayerNearby = false;
         currentExitTimer = 0;
 
         onDisableSupervisor?.Invoke();
-    }
-
-    public bool HasSeenPlayer()
-    {
-        Collider2D _objectFound = Physics2D.OverlapCircle(transform.position, supervisorDetectionRange, playerLayer);
-
-        if(! _objectFound ) 
-            return false;
-
-        PlayerDetection _playerFound = _objectFound.GetComponent<PlayerDetection>();
-
-        return _playerFound;
     }
 }

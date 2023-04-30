@@ -1,5 +1,6 @@
 using CoolFramework.Core;
 using System.Collections.Generic;
+using System.Linq;
 
 public class SupervisorManager : CoolSingleton<SupervisorManager>
 {
@@ -17,8 +18,15 @@ public class SupervisorManager : CoolSingleton<SupervisorManager>
         allSupervisors.AddRange(FindObjectsOfType<Supervisor>());
     }
 
-    public void RegisterStrike()
+    /// <summary>
+    /// Call if there is an error made
+    /// </summary>
+    /// <param name="_isForceStrike">true if the strike should pass no matter the sight of any Supervisor</param>
+    public void RegisterStrike(bool _isForceStrike = false)
     {
+        if (!_isForceStrike && !allSupervisors.Any(_supervisor => _supervisor.HasPlayerNearby))
+            return;
+
         playerStrikes++;
 
         if(playerStrikes >= 3)
