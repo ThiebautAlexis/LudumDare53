@@ -66,7 +66,7 @@ public class Colis : CoolBehaviour, IUpdate
 
     public void Timeout()
     {
-        SupervisorManager.Instance.RegisterStrike();
+        SupervisorManager.Instance.RegisterStrike(true);
         Destroy(this.gameObject);
     }
 
