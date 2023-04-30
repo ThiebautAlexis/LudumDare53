@@ -8,7 +8,7 @@ public class PlayerController : CoolBehaviour, IInputUpdate
     public override UpdateRegistration UpdateRegistration => UpdateRegistration.Init | UpdateRegistration.Input;
 
     #region Fields and Properties
-    [SerializeField] private Movable playerMovable;
+    [SerializeField] private PlayerMovable playerMovable;
     [SerializeField] private PlayerInputs playerInputs; 
     #endregion
 

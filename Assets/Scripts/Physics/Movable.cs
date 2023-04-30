@@ -3,45 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using CoolFramework.Core;
 
-public class Movable : CoolBehaviour, IUpdate, IDynamicUpdate
+public abstract class Movable : CoolBehaviour, IUpdate, IDynamicUpdate
 {
     #region Fields and Properties
     public override UpdateRegistration UpdateRegistration => UpdateRegistration.Init | UpdateRegistration.Update | UpdateRegistration.Dynamic;
 
     [Header("Settings")]
-    [SerializeField] private new Rigidbody2D rigidbody;
-    [SerializeField] private MovableAttributes attributes; 
+    [SerializeField] protected new Rigidbody2D rigidbody;
+    [SerializeField] protected MovableAttributes attributes; 
     [SerializeField] private new MovableCollider collider;
     private CollisionSystem collisionSystem;
 
     [Header("Movement")]
-    [SerializeField] private float currentSpeed = 0f; 
-    [SerializeField] private Vector2 movement = Vector2.zero;
-    [SerializeField] private Vector2 lastMovement = Vector2.zero;
+    [SerializeField] protected float currentSpeed = 0f; 
+    [SerializeField] protected Vector2 movement = Vector2.zero;
+    [SerializeField] protected Vector2 lastMovement = Vector2.zero;
     private float movementMagnitude = 1f;
     [Header("Forces")]
-    [SerializeField] private Vector2 forces = Vector2.zero; 
+    [SerializeField] protected Vector2 forces = Vector2.zero; 
     private float driftForce = 0f;
     [Header("Collisions")]
     [SerializeField] private LayerMask collisionLayer; 
     [SerializeField] private float bounciness = 1.0f;  
-
-
-    private float accelerationTime = 0f;
-    private bool isInAcceleration = false;  
-    public bool IsInAcceleration 
-    {
-        get
-        {
-            return isInAcceleration; 
-        }
-        set
-        {
-            if (value == true && accelerationTime < 0f)
-                accelerationTime = 0f; 
-            isInAcceleration = value; 
-        } 
-    }
 
     public Rigidbody2D Rigidbody => rigidbody; 
     public MovableCollider Collider => collider;
@@ -50,7 +33,9 @@ public class Movable : CoolBehaviour, IUpdate, IDynamicUpdate
 
     public Vector2 RawVelocity => (movement + forces);
     public Vector2 Movement => movement * Time.deltaTime; 
-    public Vector2 Forces => forces * Time.deltaTime; 
+    public Vector2 Forces => forces * Time.deltaTime;
+
+    public float CurrentSpeed => currentSpeed; 
 
     #endregion
 
@@ -81,6 +66,7 @@ public class Movable : CoolBehaviour, IUpdate, IDynamicUpdate
         }
 
         movement.Set(0f, 0f);
+        forces = Vector2.MoveTowards(forces, Vector2.zero, attributes.DriftCoefficient * Time.deltaTime);
     }
 
     /// <summary>
@@ -103,25 +89,16 @@ public class Movable : CoolBehaviour, IUpdate, IDynamicUpdate
     /// <summary>
     /// Compute the Velocity according to the acceleration, the targeted movement and rotation.
     /// </summary>
-    private void ComputeVelocity()
+    protected virtual void ComputeVelocity()
     {
-        if (isInAcceleration)
-            accelerationTime += Time.deltaTime;
-        else 
-            accelerationTime -= Time.deltaTime * attributes.DecelerationRate;
-
-        currentSpeed = attributes.EvaluateSpeed(ref accelerationTime);
-
         if (movement.magnitude == 0f) movement = transform.right; 
         movement = attributes.DampRotation(transform.right, movement.normalized, currentSpeed * movementMagnitude);
         
         driftForce = Vector2.Dot(-transform.up, movement) * attributes.InertiaCoefficient;
         AddForce(transform.up * driftForce * attributes.InertiaCoefficient);
 
-
         lastMovement.Set(movement.x, movement.y);
         forces = Vector2.ClampMagnitude(forces, currentSpeed);
-        forces = Vector2.MoveTowards(forces, Vector2.zero, attributes.DriftCoefficient * Time.deltaTime);
     }
 
     /// <summary>
@@ -132,10 +109,8 @@ public class Movable : CoolBehaviour, IUpdate, IDynamicUpdate
     private void UpdatePosition()
     {
         transform.position = rigidbody.position;
-        RefreshOverlaps(); 
-        if (movement.magnitude <= attributes.MinMagnitudeRotation) return;
-        Quaternion _rot = Quaternion.LookRotation(Vector3.forward, Vector2.Perpendicular(movement));
-        transform.rotation = _rot;
+        RefreshOverlaps();
+        RefreshRotation(); 
     }
 
     public void AddMovement(Vector2 _direction)
@@ -212,6 +187,8 @@ public class Movable : CoolBehaviour, IUpdate, IDynamicUpdate
             return true;
         }
     }
+
+    protected virtual void RefreshRotation(){ }
 
     private void OnDrawGizmos()
     {

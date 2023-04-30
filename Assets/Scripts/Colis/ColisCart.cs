@@ -1,35 +1,38 @@
 using CoolFramework.Core;
-using JetBrains.Annotations;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class ColisCart : CoolBehaviour, IUpdate
+public class ColisCart : Movable
 {
-    public override UpdateRegistration UpdateRegistration => UpdateRegistration.Init | UpdateRegistration.Update;
+    public override UpdateRegistration UpdateRegistration => UpdateRegistration.Init | UpdateRegistration.Update | UpdateRegistration.Dynamic;
 
     [SerializeField] private float distanceFrompreviousCart = .25f;
-    [SerializeField] private Transform backColisCartJoint;
-                             
-    [SerializeField] private Transform linkedCartJoint;
+    [SerializeField] private Movable linkedCart;
 
-    void IUpdate.Update()
+    protected override void ComputeVelocity()
     {
-        if (!linkedCartJoint)
-            return;
-
-        transform.position = linkedCartJoint.position - (linkedCartJoint.parent.up * distanceFrompreviousCart);
+        if (linkedCart == null) return; 
+        currentSpeed = linkedCart.CurrentSpeed; 
+        Vector2 _direction = (linkedCart.Rigidbody.position - Rigidbody.position); 
+        AddForce(_direction - _direction.normalized * distanceFrompreviousCart);
+        base.ComputeVelocity();
+        //transform.position = linkedCartJoint.position - (linkedCartJoint.parent.up * distanceFrompreviousCart);
     }
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.magenta;
-        if(linkedCartJoint)
-            Gizmos.DrawLine(transform.position, linkedCartJoint.position);
+        if(linkedCart != null)
+        {
+            Gizmos.color = Color.magenta;
+            Gizmos.DrawLine(transform.position, linkedCart.Rigidbody.position);
+
+            Gizmos.color = Color.green;
+            Vector2 _direction = (linkedCart.Rigidbody.position - Rigidbody.position);
+            Gizmos.DrawRay(transform.position, _direction - _direction * distanceFrompreviousCart);
+        }
     }
 
-    public void AttachCartTo(Transform _jointAttachment)
+    public void AttachCartTo(Movable _jointAttachment)
     {
-        linkedCartJoint = _jointAttachment;
+        linkedCart = _jointAttachment;
     }
 }

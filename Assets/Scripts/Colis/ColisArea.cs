@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ColisArea : MonoBehaviour
+public class ColisArea : Trigger
 {
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public override void OnEnter(Movable _movable)
     {
-        Colis _collidedColis = collision.GetComponent<Colis>();
+        Colis _collidedColis = _movable.GetComponent<Colis>();
 
         if (_collidedColis)
             RegisterColis(_collidedColis);
