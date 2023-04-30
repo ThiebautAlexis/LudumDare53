@@ -12,29 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a0dfd61aceb07d42b927deb2c7604f8, type: 3}
   m_Name: Movable Attributes
   m_EditorClassIdentifier: 
-  maxSpeed: 1.5
-  accelerationDuration: 2
+  maxSpeed: 10
+  accelerationDuration: 0.75
+  decelerationRate: 2
   accelerationCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: 2.2039793
+      outSlope: 2.2039793
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.6812089
-      value: 0.74267054
-      inSlope: 1.7688698
-      outSlope: 1.7688698
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.15424237
+      outWeight: 0.03959391
     - serializedVersion: 3
       time: 1
       value: 1
@@ -47,4 +39,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  rotationDamping: 15
+  rotationDamping: 1
+  minMagnitudeRotation: 0.1
+  inertiaCoefficient: 1
+  driftCoefficient: 2.5

@@ -48,17 +48,11 @@ public class PlayerController : CoolBehaviour, IInputUpdate
     {
         if (playerInputs.AccelerationInput.inProgress)
             magnitude = playerInputs.AccelerationInput.ReadValue<float>();
-        else magnitude = 0f; 
 
         direction = playerInputs.DirectionInput.ReadValue<Vector2>();
 
-        playerMovable.AddMovement(direction, magnitude); 
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red; 
-        Gizmos.DrawLine(transform.position, (Vector2)transform.position + (direction * magnitude)); 
+        playerMovable.AddMovement(direction.normalized);
+        //playerMovable.SetMovementMagnitude(magnitude); 
     }
     #endregion 
 

@@ -391,10 +391,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidbody: {fileID: 1333480469}
   collider: {fileID: 1333480468}
-  velocity: {x: 0, y: 0}
   attributes: {fileID: 11400000, guid: 27a2ce081394c7b499618f1dc1995f98, type: 2}
   currentSpeed: 0
-  direction: {x: 1, y: -1}
+  movement: {x: 0, y: 0}
+  movementMagnitude: 1
+  lastMovement: {x: 0, y: 0}
+  forces: {x: 0, y: 0}
 --- !u!61 &1333480468
 BoxCollider2D:
   m_ObjectHideFlags: 0
