@@ -27,7 +27,7 @@ public class SupervisorManager : CoolSingleton<SupervisorManager>
 
         if(playerStrikes >= 3)
         {
-            // end game
+            GameManager.Instance.StrikeEnding();
         }
     }
 }

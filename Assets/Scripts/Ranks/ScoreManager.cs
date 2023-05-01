@@ -20,12 +20,12 @@ public class ScoreManager : CoolSingleton<ScoreManager>, IUpdate
     [SerializeField] private int comboRequirementDK;
     private int playerScore = 0;
     private float displayedScore = 0;
-    private Ranks currentRank = Ranks.DD;
+    public Ranks CurrentRank { get; private set; } = Ranks.DD;
     private int currentCombo = 0;
 
     private void Start()
     {
-        rankImage.sprite = rankLibrary.GetSprite("Rank", currentRank.ToString());
+        rankImage.sprite = rankLibrary.GetSprite("Rank", CurrentRank.ToString());
     }
 
     void IUpdate.Update()
@@ -47,68 +47,68 @@ public class ScoreManager : CoolSingleton<ScoreManager>, IUpdate
 
     public void AugmentCombo(int _amount)
     {
-        if (currentRank == Ranks.DK)
+        if (CurrentRank == Ranks.DK)
             return;
 
         currentCombo += _amount;
 
-        switch (currentRank)
+        switch (CurrentRank)
         {
             case Ranks.DD:
                 if(currentCombo >= comboRequirementCD)
                 {
-                    currentRank = Ranks.CD;
+                    CurrentRank = Ranks.CD;
                     currentCombo = 0;
                 }
                 break;
             case Ranks.CD:
                 if (currentCombo >= comboRequirementBD)
                 {
-                    currentRank = Ranks.BD;
+                    CurrentRank = Ranks.BD;
                     currentCombo = 0;
                 }
                 break;
             case Ranks.BD:
                 if (currentCombo >= comboRequirementAD)
                 {
-                    currentRank = Ranks.AD;
+                    CurrentRank = Ranks.AD;
                     currentCombo = 0;
                 }
                 break;
             case Ranks.AD:
                 if (currentCombo >= comboRequirementSD)
                 {
-                    currentRank = Ranks.SD;
+                    CurrentRank = Ranks.SD;
                     currentCombo = 0;
                 }
                 break;
             case Ranks.SD:
                 if (currentCombo >= comboRequirementSSD)
                 {
-                    currentRank = Ranks.SSD;
+                    CurrentRank = Ranks.SSD;
                     currentCombo = 0;
                 }
                 break;
             case Ranks.SSD:
                 if (currentCombo >= comboRequirementDK)
                 {
-                    currentRank = Ranks.DK;
+                    CurrentRank = Ranks.DK;
                     currentCombo = 0;
                 }
                 break;
         }
 
-        rankImage.sprite = rankLibrary.GetSprite("Rank", currentRank.ToString());
+        rankImage.sprite = rankLibrary.GetSprite("Rank", CurrentRank.ToString());
     }
 
     public void BreakCombo()
     {
         currentCombo = 0;
 
-        if(currentRank != Ranks.DD)
+        if(CurrentRank != Ranks.DD)
         {
-            currentRank = (Ranks)((int)currentRank - 1);
-            rankImage.sprite = rankLibrary.GetSprite("Rank", currentRank.ToString());
+            CurrentRank = (Ranks)((int)CurrentRank - 1);
+            rankImage.sprite = rankLibrary.GetSprite("Rank", CurrentRank.ToString());
         }
     }
 }
