@@ -16,15 +16,19 @@ public class DialogueBox : CoolSingleton<DialogueBox>, IUpdate
 
     public void ReadText(DialogueData _data)
     {
-        if (isDisplaying)
+        if (currentData != null)
+        {
             bufferData = _data;
+        }
         else
         {
             dialogueText.SetText(string.Empty);
             currentData = _data;
+            TalkieWalkie.Instance.Display(currentData.ChartacterImage, currentData.Duration + pauseDuration * 2);
+            Pause();
+            dialogueBoxObject.SetActive(true); 
+            isDisplaying = true;
         }
-        dialogueBoxObject.SetActive(true); 
-        isDisplaying = true; 
     }
 
     private int tempIndex = 0; 
@@ -35,21 +39,20 @@ public class DialogueBox : CoolSingleton<DialogueBox>, IUpdate
 
         timer += Time.deltaTime;
         if (isInPause)
-        {
-            
+        {  
             if (timer > pauseDuration)
             {
-                if(currentData == null)
+                if(currentData == null) // In this case, this is an after dialogue pause.
                 {
                     Hide();
-                    if (bufferData != null)
+                    if (bufferData != null) // If there is a dialogue in the buffer
                     {
                         ReadText(bufferData);
                         bufferData = null; 
                     }
                     return; 
                 }
-                UnPause(); 
+                UnPause(); // In this case, this is a pre dialogue pause.
             }
             return;
         }

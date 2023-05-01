@@ -10,7 +10,7 @@ public class DialogueTrigger : Trigger
     {
         if(_movable.TryGetComponent(out PlayerController _playerController))
         {
-            DialogueBox.Instance.ReadText(dialogue); 
+            DialogueBox.Instance.ReadText(dialogue);
             gameObject.SetActive(false);
         }
     }

@@ -7,7 +7,8 @@ public class DialogueData : ScriptableObject
 {
     [SerializeField, TextArea] private string displayedText = string.Empty;
     [SerializeField] private float duration = 5f;
-
+    [SerializeField] private Sprite characterImage; 
+    
     public string DisplayedText => displayedText; 
     public float Interval
     {
@@ -17,4 +18,7 @@ public class DialogueData : ScriptableObject
             return duration / displayedText.Length;
         }
     }
+    public float Duration => duration; 
+
+    public Sprite ChartacterImage => characterImage; 
 }
