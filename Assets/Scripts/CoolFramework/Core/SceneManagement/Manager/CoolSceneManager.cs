@@ -14,6 +14,8 @@ namespace CoolFramework.SceneManagement
         [SerializeField] private bool loadFirstScene; 
         [SerializeField] private SceneBundle firstLoadedSceneBundle;
         [SerializeField] private LoadingBehaviour defaultLoadingBehaviour;
+
+        private SceneBundle currentSceneBundle; 
         #endregion
 
         #region Events
@@ -117,7 +119,22 @@ namespace CoolFramework.SceneManagement
         {
             base.OnInit();
             if(loadFirstScene)
+            {
+                currentSceneBundle = firstLoadedSceneBundle;
                 StartCoroutine(LoadSceneBundle(firstLoadedSceneBundle, LoadSceneMode.Additive));
+            }
+        }
+
+        public void LoadNewSceneBundle(SceneBundle _bundle)
+        {
+            StartCoroutine(LoadUnload(_bundle)); 
+        }
+
+        private IEnumerator LoadUnload(SceneBundle _bundle)
+        {
+            yield return StartCoroutine(UnloadSceneBundle(currentSceneBundle, UnloadSceneOptions.None));
+            currentSceneBundle = _bundle;
+            yield return LoadSceneBundle(currentSceneBundle, LoadSceneMode.Additive); 
         }
         #endregion
     }

@@ -94,6 +94,8 @@ namespace CoolFramework.Core
 
         private void Update()
         {
+
+            Debug.LogError(Mathf.Ceil(1 / Time.deltaTime)); 
             stopWatch.Restart();
             // Init Updates
             while (initUpdates.Count > 0 && (stopWatch.ElapsedMilliseconds < maxInitDuration)) // This line is used to avoid bottleneck

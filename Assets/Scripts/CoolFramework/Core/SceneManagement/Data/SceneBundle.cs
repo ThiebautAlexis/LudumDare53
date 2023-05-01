@@ -48,6 +48,7 @@ namespace CoolFramework.SceneManagement
         /// <returns>Return true if the scene can be unloaded.</returns>
         public bool UnloadSceneAsyncAt(out AsyncOperationHandle<SceneInstance> _operation, UnloadSceneOptions _options, int _unloadedIndex)
         {
+            if (scenesInstances == null) Debug.LogError("Scenes Instances are null");
             _operation = Addressables.UnloadSceneAsync(scenesInstances[_unloadedIndex], _options);
             return true;
         }

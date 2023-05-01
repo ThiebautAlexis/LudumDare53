@@ -132,9 +132,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 33361443}
-  - component: {fileID: 33361442}
   - component: {fileID: 33361441}
   - component: {fileID: 33361444}
+  - component: {fileID: 33361445}
   m_Layer: 0
   m_Name: 'MANAGERS '
   m_TagString: Untagged
@@ -155,21 +155,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   suspendOnLoading: 0
---- !u!114 &33361442
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 33361440}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d91236a41876354ebe8387f7a871788, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  loadFirstScene: 1
-  firstLoadedSceneBundle: {fileID: 11400000, guid: 3b5a9c1e55f079b4c9da63f83241386b, type: 2}
-  defaultLoadingBehaviour: {fileID: 11400000, guid: c2c089e6901439a41ba548e3f87a72f5, type: 2}
 --- !u!4 &33361443
 Transform:
   m_ObjectHideFlags: 0
@@ -197,7 +182,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78b2f7e80ed634242b0d5108ef14b157, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundDatabase: {fileID: 0}
+  soundDatabase: {fileID: 11400000, guid: 71ff69aeb3ad5354abeed4c44b071978, type: 2}
+--- !u!114 &33361445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 33361440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06199b3dfded4bc478fbcc6389bd62d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firstLoadedSceneIndex: 1
+  loadFirstScene: 1
 --- !u!1 &1131150705
 GameObject:
   m_ObjectHideFlags: 0

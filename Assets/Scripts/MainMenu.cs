@@ -13,12 +13,13 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private SceneBundle tutorialSceneBundle;
     [SerializeField] private SceneBundle mainMenuSceneBundle;
 
+    [SerializeField] private int tutoSceneIndex = 2;
+    [SerializeField] private int mainGameSceneIndex = 3; 
 
-    public void StartTutoScene()
-    {
-        StartCoroutine(CoolSceneManager.Instance.LoadSceneBundle(tutorialSceneBundle, UnityEngine.SceneManagement.LoadSceneMode.Additive));
-        StartCoroutine(CoolSceneManager.Instance.UnloadSceneBundle(mainMenuSceneBundle, UnityEngine.SceneManagement.UnloadSceneOptions.None));
-    }
+
+    public void StartTutoScene() => SimplifiedSceneManager.Instance.LoadScene(tutoSceneIndex); 
+
+    public void StartMainGameScene() => SimplifiedSceneManager.Instance.LoadScene(mainGameSceneIndex);
 
     public void ShowCredits()
     {
