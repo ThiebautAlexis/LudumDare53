@@ -59,6 +59,7 @@ public class ScoreManager : CoolSingleton<ScoreManager>, IUpdate
                 {
                     CurrentRank = Ranks.CD;
                     currentCombo = 0;
+                    Jenny.Instance.PlayRankAnimation(CurrentRank);
                 }
                 break;
             case Ranks.CD:
@@ -66,6 +67,7 @@ public class ScoreManager : CoolSingleton<ScoreManager>, IUpdate
                 {
                     CurrentRank = Ranks.BD;
                     currentCombo = 0;
+                    Jenny.Instance.PlayRankAnimation(CurrentRank);
                 }
                 break;
             case Ranks.BD:
@@ -73,6 +75,7 @@ public class ScoreManager : CoolSingleton<ScoreManager>, IUpdate
                 {
                     CurrentRank = Ranks.AD;
                     currentCombo = 0;
+                    Jenny.Instance.PlayRankAnimation(CurrentRank);
                 }
                 break;
             case Ranks.AD:
@@ -80,6 +83,7 @@ public class ScoreManager : CoolSingleton<ScoreManager>, IUpdate
                 {
                     CurrentRank = Ranks.SD;
                     currentCombo = 0;
+                    Jenny.Instance.PlayRankAnimation(CurrentRank);
                 }
                 break;
             case Ranks.SD:
@@ -87,6 +91,7 @@ public class ScoreManager : CoolSingleton<ScoreManager>, IUpdate
                 {
                     CurrentRank = Ranks.SSD;
                     currentCombo = 0;
+                    Jenny.Instance.PlayRankAnimation(CurrentRank);
                 }
                 break;
             case Ranks.SSD:
@@ -94,6 +99,7 @@ public class ScoreManager : CoolSingleton<ScoreManager>, IUpdate
                 {
                     CurrentRank = Ranks.DK;
                     currentCombo = 0;
+                    Jenny.Instance.PlayRankAnimation(CurrentRank);
                 }
                 break;
         }
@@ -109,6 +115,7 @@ public class ScoreManager : CoolSingleton<ScoreManager>, IUpdate
         {
             CurrentRank = (Ranks)((int)CurrentRank - 1);
             rankImage.sprite = rankLibrary.GetSprite("Rank", CurrentRank.ToString());
+            Jenny.Instance.PlayFailAnimation();
         }
     }
 }
