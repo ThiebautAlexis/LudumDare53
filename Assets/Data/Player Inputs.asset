@@ -28,6 +28,14 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Acceleration Input
       m_Flags: 0
+    - m_Name: 
+      m_Id: 64b20dd0-faa3-4ab6-a5b7-191315a21809
+      m_Path: <Keyboard>/space
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Acceleration Input
+      m_Flags: 0
     m_Flags: 0
   DirectionInput:
     m_Name: Direction Input
@@ -45,6 +53,46 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Direction Input
       m_Flags: 0
+    - m_Name: 2D Vector
+      m_Id: 1fdacb0b-a4ef-4954-8f3f-c83b589e18ec
+      m_Path: 2DVector
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Direction Input
+      m_Flags: 4
+    - m_Name: up
+      m_Id: 2f16141e-a243-49d6-9488-a8f1a16a3ee8
+      m_Path: <Keyboard>/upArrow
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Direction Input
+      m_Flags: 8
+    - m_Name: down
+      m_Id: aa5197e5-32c8-44cd-8aa3-97a8f8415465
+      m_Path: <Keyboard>/downArrow
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Direction Input
+      m_Flags: 8
+    - m_Name: left
+      m_Id: f0d7f8de-a41e-4f68-bab5-1f1455f8a22a
+      m_Path: <Keyboard>/leftArrow
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Direction Input
+      m_Flags: 8
+    - m_Name: right
+      m_Id: d63d3345-47e7-4672-ae7c-9ee82194f6f2
+      m_Path: <Keyboard>/rightArrow
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Direction Input
+      m_Flags: 8
     m_Flags: 0
   DropCartInput:
     m_Name: Drop Cart Input
@@ -57,6 +105,14 @@ MonoBehaviour:
     - m_Name: 
       m_Id: 64f2518b-e6b1-4161-9834-3fc72fb605ac
       m_Path: <Gamepad>/buttonSouth
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Drop Cart Input
+      m_Flags: 0
+    - m_Name: 
+      m_Id: eb40b37e-bf2c-42aa-a81f-db4db2b59dce
+      m_Path: <Keyboard>/shift
       m_Interactions: 
       m_Processors: 
       m_Groups: 
