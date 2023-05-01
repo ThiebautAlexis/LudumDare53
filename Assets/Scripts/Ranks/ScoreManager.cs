@@ -30,8 +30,6 @@ public class ScoreManager : CoolSingleton<ScoreManager>, IUpdate
 
     void IUpdate.Update()
     {
-        playerScore += 20;
-
         displayedScore = Mathf.MoveTowards(displayedScore, playerScore, Time.deltaTime * scoreDisplaySpeed);
 
         scoreText.text = ((int)displayedScore).ToString();
