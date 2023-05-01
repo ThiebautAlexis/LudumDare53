@@ -8,8 +8,10 @@ public class TalkieWalkie : CoolSingleton<TalkieWalkie>, IUpdate
     public override UpdateRegistration UpdateRegistration => base.UpdateRegistration | UpdateRegistration.Update;
 
     [Header("Character")]
-    [SerializeField] private GameObject characterBubble; 
+    [SerializeField] private Image characterBubble; 
     [SerializeField] private Image characterImage;
+    [SerializeField] private Sprite jennyBubbleSprite;
+    [SerializeField] private Sprite supervisorBubbleSprite;
 
     [Header("Talkie Walkie")]
     [SerializeField] private Transform talkiewalkieTransform;
@@ -35,17 +37,18 @@ public class TalkieWalkie : CoolSingleton<TalkieWalkie>, IUpdate
     private void Hide()
     {
         isDisplaying = false;
-        characterBubble.SetActive(false);
+        characterBubble.gameObject.SetActive(false);
         characterImage.sprite = null; 
 
     }
 
-    public void Display(Sprite _characterSprite, float _duration)
+    public void Display(Sprite _characterSprite, float _duration, bool _isSupervisor = false)
     {
         // Play sound here
         isDisplaying = true;
         characterImage.sprite = _characterSprite;
-        characterBubble.SetActive(true);
+        characterBubble.gameObject.SetActive(true);
+        characterBubble.sprite = _isSupervisor ? supervisorBubbleSprite : jennyBubbleSprite;
         timer = 0f;
         duration = _duration;
 

@@ -45,7 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jennyReactionsLibrary: {fileID: 7108339969198208228, guid: 9df0cf56e1668bd48941f97a13094ba6, type: 3}
-  talkieWalkie: {fileID: 7572461542292281444}
   reactionDurationInSeconds: 1.5
 --- !u!1 &7572461540967399804
 GameObject:
@@ -374,8 +373,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8919e012c4196e4f8531fdb0e839121, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterBubble: {fileID: 7572461540967399804}
+  characterBubble: {fileID: 7572461540967399806}
   characterImage: {fileID: 7572461541043023939}
+  jennyBubbleSprite: {fileID: 21300000, guid: 6e474f21790df154c8f41c4a7f774bfd, type: 3}
+  supervisorBubbleSprite: {fileID: 21300000, guid: 6b7eba993cfff064391b771b31d6012f, type: 3}
   talkiewalkieTransform: {fileID: 7572461541785331237}
   shakingDuration: 1
   shakingForce: 2
