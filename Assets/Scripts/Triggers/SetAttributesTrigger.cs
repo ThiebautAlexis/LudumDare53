@@ -11,7 +11,7 @@ public class SetAttributesTrigger : Trigger
         if(_movable is PlayerMovable _playerMovable)
         {
             _playerMovable.SetAttributes(attributes);
-            this.enabled = false;
+            this.gameObject.SetActive(false);
         }
     }
 }

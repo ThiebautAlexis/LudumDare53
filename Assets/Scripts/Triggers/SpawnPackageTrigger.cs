@@ -12,7 +12,7 @@ public class SpawnPackageTrigger : Trigger
         if(_movable.TryGetComponent(out PlayerController _controller))
         {
             Instantiate(spawnedObject, spawnPosition.position, Quaternion.identity);
-            this.enabled = false;
+            this.gameObject.SetActive(false);
         }
     }
 }
