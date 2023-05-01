@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 066925daa98e4b943ae809b65e40f087
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - CHNO Pixel Code Pro
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 521fba97678129e408bd526343ad0200, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

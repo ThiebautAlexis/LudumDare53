@@ -1,4 +1,6 @@
 using CoolFramework.Core;
+using System;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : CoolSingleton<GameManager>, IUpdate
@@ -7,14 +9,25 @@ public class GameManager : CoolSingleton<GameManager>, IUpdate
 
     [SerializeField] private float maxGameTimeInSeconds;
     [SerializeField] private Animator endingAnimator;
+    [SerializeField] private TMP_Text timeText;
 
     private float currentGametime = 0;
 
+    protected override void OnInit()
+    {
+        base.OnInit();
+
+        currentGametime = maxGameTimeInSeconds;
+    }
+
     void IUpdate.Update()
     {
-        currentGametime += Time.deltaTime;
+        currentGametime -= Time.deltaTime;
 
-        if (currentGametime > maxGameTimeInSeconds)
+        TimeSpan _timespan = TimeSpan.FromSeconds(currentGametime);
+        timeText.text = _timespan.ToString(@"mm\:ss");
+
+        if (currentGametime <= 0)
             TimeEnding();
     }
 

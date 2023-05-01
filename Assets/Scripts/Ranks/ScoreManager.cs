@@ -9,7 +9,8 @@ public class ScoreManager : CoolSingleton<ScoreManager>, IUpdate
     public override UpdateRegistration UpdateRegistration => UpdateRegistration.Init | UpdateRegistration.Update;
 
     [SerializeField] private TMP_Text scoreText;
-    [SerializeField] private Image rankImage;
+    [SerializeField] private TMP_Text rankText;
+    [SerializeField] private Animator fireAnimator;
     [SerializeField] private SpriteLibraryAsset rankLibrary;
     [SerializeField] private float scoreDisplaySpeed = 2;
     [SerializeField] private int comboRequirementCD;
@@ -18,6 +19,13 @@ public class ScoreManager : CoolSingleton<ScoreManager>, IUpdate
     [SerializeField] private int comboRequirementSD;
     [SerializeField] private int comboRequirementSSD;
     [SerializeField] private int comboRequirementDK;
+    [SerializeField] private Color DDColor;
+    [SerializeField] private Color CDColor;
+    [SerializeField] private Color BDColor;
+    [SerializeField] private Color ADColor;
+    [SerializeField] private Color SDColor;
+    [SerializeField] private Color SSDColor;
+    [SerializeField] private Color DKColor;
     private int playerScore = 0;
     private float displayedScore = 0;
     public Ranks CurrentRank { get; private set; } = Ranks.DD;
@@ -25,7 +33,7 @@ public class ScoreManager : CoolSingleton<ScoreManager>, IUpdate
 
     private void Start()
     {
-        rankImage.sprite = rankLibrary.GetSprite("Rank", CurrentRank.ToString());
+        UpdateRankText();
     }
 
     void IUpdate.Update()
@@ -34,7 +42,6 @@ public class ScoreManager : CoolSingleton<ScoreManager>, IUpdate
 
         scoreText.text = ((int)displayedScore).ToString();
     }
-
 
     public void AddScore(int _amount)
     {
@@ -89,6 +96,8 @@ public class ScoreManager : CoolSingleton<ScoreManager>, IUpdate
             case Ranks.SD:
                 if (currentCombo >= comboRequirementSSD)
                 {
+                    fireAnimator.gameObject.SetActive(true);
+                    fireAnimator.SetTrigger("SSD");
                     CurrentRank = Ranks.SSD;
                     currentCombo = 0;
                     Jenny.Instance.PlayRankAnimation(CurrentRank);
@@ -97,6 +106,7 @@ public class ScoreManager : CoolSingleton<ScoreManager>, IUpdate
             case Ranks.SSD:
                 if (currentCombo >= comboRequirementDK)
                 {
+                    fireAnimator.SetTrigger("DK");
                     CurrentRank = Ranks.DK;
                     currentCombo = 0;
                     Jenny.Instance.PlayRankAnimation(CurrentRank);
@@ -104,7 +114,7 @@ public class ScoreManager : CoolSingleton<ScoreManager>, IUpdate
                 break;
         }
 
-        rankImage.sprite = rankLibrary.GetSprite("Rank", CurrentRank.ToString());
+        UpdateRankText();
     }
 
     public void BreakCombo()
@@ -114,8 +124,46 @@ public class ScoreManager : CoolSingleton<ScoreManager>, IUpdate
         if(CurrentRank != Ranks.DD)
         {
             CurrentRank = (Ranks)((int)CurrentRank - 1);
-            rankImage.sprite = rankLibrary.GetSprite("Rank", CurrentRank.ToString());
+
+            if(CurrentRank == Ranks.SSD)
+                fireAnimator.SetTrigger("SSD");
+            else
+                fireAnimator.gameObject.SetActive(false);
+
+            rankText.text = CurrentRank.ToString();
             Jenny.Instance.PlayFailAnimation();
+        }
+    }
+
+    private void UpdateRankText()
+    {
+        rankText.text = CurrentRank.ToString();
+
+        switch (CurrentRank)
+        {
+            case Ranks.DD:
+                rankText.color = DDColor;
+                break;
+            case Ranks.CD:
+                rankText.color = CDColor;
+                break;
+            case Ranks.BD:
+                rankText.color = BDColor;
+                break;
+            case Ranks.AD:
+                rankText.color = ADColor;
+                break;
+            case Ranks.SD:
+                rankText.color = SDColor;
+                break;
+            case Ranks.SSD:
+                rankText.color = SSDColor;
+                break;
+            case Ranks.DK:
+                rankText.color = DKColor;
+                break;
+            default:
+                break;
         }
     }
 }
