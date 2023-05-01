@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ea60108c60f85a44b7205662ebd0c29, type: 3}
   m_Name: DialogueData_Tuto4
   m_EditorClassIdentifier: 
-  displayedText: "H\xE9 pas mal! J'adore Inital D, tu connais ?"
+  displayedText: Hey! That's a nice car you got there! Maybe we can unbridle it a
+    little bit! *wink*
   duration: 1.2
   characterImage: {fileID: -1136120907, guid: 6bc7275b3a169dc4188dbaf21ffb1700, type: 3}

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ea60108c60f85a44b7205662ebd0c29, type: 3}
   m_Name: DialogueData_Tuto2
   m_EditorClassIdentifier: 
-  displayedText: 'Va l''amener dans la zone de livraison! '
+  displayedText: Nice! Follow that little arrow and reach the delivery area now.
   duration: 1.2
   characterImage: {fileID: 456299863, guid: b0d8f432ab11f5e419a396b8e7666b3e, type: 3}

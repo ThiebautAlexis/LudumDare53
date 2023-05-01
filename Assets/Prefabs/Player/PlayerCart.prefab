@@ -5041,8 +5041,13 @@ MonoBehaviour:
   collisionLayer:
     serializedVersion: 2
     m_Bits: 192
-  bounciness: 10
+  bounciness: 1
   attachPoint: {fileID: 3048228272431774522}
+  minDisplacementScore: 1
+  scoringThreshold: 0.15
+  baseScore: 5
+  comboDuration: 0.25
+  comboTimer: 0
 --- !u!114 &8742906579141874990
 MonoBehaviour:
   m_ObjectHideFlags: 0

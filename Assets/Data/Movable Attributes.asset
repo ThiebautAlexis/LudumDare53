@@ -39,7 +39,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  rotationDamping: 10
+  rotationDamping: 5
   minMagnitudeRotation: 0.1
-  inertiaCoefficient: 1.2
-  driftCoefficient: 40
+  inertiaCoefficient: 1.5
+  driftCoefficient: 35

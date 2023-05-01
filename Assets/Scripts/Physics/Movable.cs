@@ -21,7 +21,7 @@ public abstract class Movable : CoolBehaviour, IUpdate, IDynamicUpdate
     private float movementMagnitude = 1f;
     [Header("Forces")]
     [SerializeField] protected Vector2 forces = Vector2.zero; 
-    private float driftForce = 0f;
+    protected float driftForce = 0f;
     [Header("Collisions")]
     [SerializeField] private LayerMask collisionLayer; 
     [SerializeField] private float bounciness = 1.0f;
@@ -47,7 +47,7 @@ public abstract class Movable : CoolBehaviour, IUpdate, IDynamicUpdate
     void IDynamicUpdate.Update() => MovableUpdate();
     void IUpdate.Update() => ComputeVelocity();
     protected override void OnInit()
-    {
+    { 
         base.OnInit();
         collisionSystem = new CollisionSystem(this);
         collider.Initialize(collisionLayer); 
