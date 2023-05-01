@@ -24,6 +24,8 @@ public class Colis : Trigger, IUpdate
         base.OnInit();
         if(transform.parent != null)
             spawnOrigin = GetComponentInParent<ColisSpawner>();
+
+        ColisArrowManager.Instance.CreateNewCallerArrowForColis(this);
     }
 
     void IUpdate.Update()
@@ -56,12 +58,14 @@ public class Colis : Trigger, IUpdate
         colisCart.transform.parent = null;
         triggerCollider.enabled = false;
         triggerSprite.enabled = false;
+        ColisArrowManager.Instance.RemoveCallerArrowForColis(this);
         ColisArrowManager.Instance.CreateNewArrowForColis(this);
         _manager.AddNewColisCart(colisCart);
     }
 
     public void Release()
     {
+        ColisArrowManager.Instance.CreateNewCallerArrowForColis(this);
         triggerCollider.enabled = true; 
         ColisArrowManager.Instance.RemoveArrowForColis(this);
     }
@@ -88,6 +92,7 @@ public class Colis : Trigger, IUpdate
             spawnOrigin.ColisPickedUp();
 
         ColisManager.Instance.RemoveColis();
+        ColisArrowManager.Instance.RemoveCallerArrowForColis(this);
         ColisArrowManager.Instance.RemoveArrowForColis(this);
     }
 }

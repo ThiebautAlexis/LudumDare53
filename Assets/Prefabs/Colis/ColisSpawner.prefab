@@ -47,9 +47,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colisSpawnPosition: {x: 0, y: 0}
   allColis:
-  - {fileID: 3940021485669715030, guid: b1736e95928c5d242b18f85d0ad662b6, type: 3}
+  - {fileID: 1429951909217802157, guid: 65ea97de6a817b541bfd22f82a25332f, type: 3}
   - {fileID: 3940021485669715030, guid: d806eefdb99fc1a46962b01b4eb60606, type: 3}
-  - {fileID: 3940021485669715030, guid: f35f06b791834b44580e4b95c0fcd9da, type: 3}
+  - {fileID: 7823471918996755880, guid: f35f06b791834b44580e4b95c0fcd9da, type: 3}
 --- !u!58 &665012350
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -65,4 +65,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 3

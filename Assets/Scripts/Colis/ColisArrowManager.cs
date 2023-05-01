@@ -7,7 +7,9 @@ public class ColisArrowManager : CoolSingleton<ColisArrowManager>
     public override UpdateRegistration UpdateRegistration => UpdateRegistration.Init;
 
     [SerializeField] private ColisArrow colisArrowPrefab;
+    [SerializeField] private ColisArrowCaller colisCallerArrowPrefab;
     private Dictionary<Colis, ColisArrow> colisArrowDictionnary = new Dictionary<Colis, ColisArrow>();
+    private Dictionary<Colis, ColisArrowCaller> colisCallerArrowDictionnary = new Dictionary<Colis, ColisArrowCaller>();
 
 
     public void CreateNewArrowForColis(Colis _colis)
@@ -34,6 +36,34 @@ public class ColisArrowManager : CoolSingleton<ColisArrowManager>
 
         Destroy(_colisArrow.gameObject);
         colisArrowDictionnary.Remove(_colis);
+    }
+
+
+
+    public void CreateNewCallerArrowForColis(Colis _colis)
+    {
+        if (colisCallerArrowDictionnary.ContainsKey(_colis))
+            return;
+
+        ColisArrowCaller _newArrow = Instantiate(colisCallerArrowPrefab, transform);
+        _newArrow.InitValues(_colis);
+
+        colisCallerArrowDictionnary.Add(_colis, _newArrow);
+    }
+
+    public void RemoveCallerArrowForColis(Colis _colis)
+    {
+        if (!colisCallerArrowDictionnary.ContainsKey(_colis))
+            return;
+
+        ColisArrowCaller _colisArrow;
+        colisCallerArrowDictionnary.TryGetValue(_colis, out _colisArrow);
+
+        if (!_colisArrow)
+            return;
+
+        Destroy(_colisArrow.gameObject);
+        colisCallerArrowDictionnary.Remove(_colis);
     }
 
 }

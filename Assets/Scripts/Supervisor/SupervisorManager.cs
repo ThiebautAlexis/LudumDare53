@@ -32,6 +32,7 @@ public class SupervisorManager : CoolSingleton<SupervisorManager>
 
         playerStrikes++;
 
+        SoundManager.Instance.PlaySound("Strike", this.gameObject);
         TalkieWalkie.Instance.Display(supervisorSprite, 1.5f, true);
         ScoreManager.Instance.BreakCombo();
 
