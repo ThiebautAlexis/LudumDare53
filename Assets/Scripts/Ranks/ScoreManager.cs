@@ -34,8 +34,6 @@ public class ScoreManager : CoolSingleton<ScoreManager>, IUpdate
     private void Start()
     {
         UpdateRankText();
-
-        InvokeRepeating("Temp", 0, .2f);
     }
 
     void IUpdate.Update()
@@ -43,11 +41,6 @@ public class ScoreManager : CoolSingleton<ScoreManager>, IUpdate
         displayedScore = Mathf.MoveTowards(displayedScore, playerScore, Time.deltaTime * scoreDisplaySpeed);
 
         scoreText.text = ((int)displayedScore).ToString();
-    }
-
-    void Temp()
-    {
-        AugmentCombo(4);
     }
 
     public void AddScore(int _amount)
