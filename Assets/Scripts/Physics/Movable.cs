@@ -99,7 +99,7 @@ public abstract class Movable : CoolBehaviour, IUpdate, IDynamicUpdate
         movement = attributes.DampRotation(transform.right, movement.normalized, currentSpeed * movementMagnitude);
         
         driftForce = Vector2.Dot(-transform.up, movement) * attributes.InertiaCoefficient;
-        AddForce(transform.up * driftForce * attributes.InertiaCoefficient);
+        AddForce(transform.up * driftForce);
 
         lastMovement.Set(movement.x, movement.y);
         forces = Vector2.ClampMagnitude(forces, currentSpeed);
@@ -113,8 +113,8 @@ public abstract class Movable : CoolBehaviour, IUpdate, IDynamicUpdate
     private void UpdatePosition()
     {
         transform.position = rigidbody.position;
-        RefreshOverlaps();
         RefreshRotation(); 
+        RefreshOverlaps();
     }
 
     public void AddMovement(Vector2 _direction)
@@ -151,6 +151,7 @@ public abstract class Movable : CoolBehaviour, IUpdate, IDynamicUpdate
                     }
                 }
             }
+            else Debug.Log("Try push here"); 
         }
 
         // Exit from no more overlapping triggers.

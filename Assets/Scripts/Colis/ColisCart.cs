@@ -48,7 +48,11 @@ public class ColisCart : Movable
         transform.rotation = _rot;
     }
 
-    protected override void OnAppliedVelocity(Vector2 _velocity, Vector2 _displacement, List<RaycastHit2D> _buffer){}
+    protected override void OnAppliedVelocity(Vector2 _velocity, Vector2 _displacement, List<RaycastHit2D> _buffer)
+    {
+        if (linkedCart != null) return;
+        base.OnAppliedVelocity(_velocity, _displacement, _buffer); 
+    }
 
     public void AttachCartTo(Movable _jointAttachment)
     {
@@ -57,7 +61,10 @@ public class ColisCart : Movable
 
     public void ReleaseCart()
     {
-        AttachCartTo(null);
+        float _driftForce = Vector2.Dot(transform.up, Vector2.Perpendicular(linkedCart.Rigidbody.position - Rigidbody.position)) * attributes.InertiaCoefficient;
         ownColis.Release();
+        AttachCartTo(null);
+
+        AddForce(transform.up * _driftForce);
     }
 }

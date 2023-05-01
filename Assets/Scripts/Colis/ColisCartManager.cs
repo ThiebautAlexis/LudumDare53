@@ -57,7 +57,7 @@ public class ColisCartManager : CoolBehaviour
 
         allLinkedColisCart[allLinkedColisCart.Count - 1].ReleaseCart();
 
-        allLinkedColisCart[allLinkedColisCart.Count - 1].AddForce(playerMovable.transform.forward * 5);
+        //allLinkedColisCart[allLinkedColisCart.Count - 1].AddForce(playerMovable.transform.forward * 5);
 
         allLinkedColisCart.RemoveAt(allLinkedColisCart.Count - 1);
     }

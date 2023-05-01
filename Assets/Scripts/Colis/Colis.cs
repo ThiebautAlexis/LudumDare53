@@ -11,6 +11,8 @@ public class Colis : Trigger, IUpdate
     [SerializeField] private ColisCart colisCart;
     [SerializeField] private Collider2D triggerCollider;
     [SerializeField] private ColisType currentColisType;
+    [SerializeField] private SpriteRenderer triggerSprite; 
+
     public ColisType GetColisType { get { return currentColisType; } }
     private float colisCurrentDurationInSeconds;
     private ColisSpawner spawnOrigin;
@@ -53,13 +55,14 @@ public class Colis : Trigger, IUpdate
         }
         colisCart.transform.parent = null;
         triggerCollider.enabled = false;
+        triggerSprite.enabled = false;
         ColisArrowManager.Instance.CreateNewArrowForColis(this);
         _manager.AddNewColisCart(colisCart);
     }
 
     public void Release()
     {
-        triggerCollider.enabled = true;
+        triggerCollider.enabled = true; 
         ColisArrowManager.Instance.RemoveArrowForColis(this);
     }
 
