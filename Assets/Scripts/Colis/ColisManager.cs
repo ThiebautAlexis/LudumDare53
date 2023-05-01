@@ -55,14 +55,13 @@ public class ColisManager : CoolSingleton<ColisManager>, IUpdate
         // Spawn colis on available spawner
         foreach (ColisSpawner _spawner in allColisSpawners)
         {
-            if(_spawner.AvailableForSpawn)
+            if(_spawner.AvailableForSpawn && !_spawner.HasPlayerNearby)
             {
-                Colis _spawnedColis = _spawner.SpawnColis();
+                ColisCart _spawnedColis = _spawner.SpawnColis();
 
                 if (!_spawnedColis)
                     continue;
 
-                _spawnedColis.RegisterDestination(allColisAreas[Random.Range(0, allColisAreas.Count)]);
                 currentColisInGame++;
                 break;
             }

@@ -9,18 +9,35 @@ public class ColisArrow : CoolBehaviour, IUpdate
     public override UpdateRegistration UpdateRegistration => UpdateRegistration.Init | UpdateRegistration.Update;
 
     [SerializeField] private Transform playerTransform;
-    [SerializeField] private ColisArea colisTargetArea;
+    private List<ColisArea> correspondingAreas = new List<ColisArea>();
 
     void IUpdate.Update()
     {
-        float _angle = Mathf.Atan2(colisTargetArea.transform.position.y - playerTransform.position.y, colisTargetArea.transform.position.x - playerTransform.position.x) * Mathf.Rad2Deg;
+        ColisArea _closestArea = null;
+        float _smallestDistance = Mathf.Infinity;
+        foreach (ColisArea _area in correspondingAreas)
+        {
+            float _distanceFromArea = Vector2.Distance(playerTransform.position, _area.transform.position);
+
+            if (_distanceFromArea >= _smallestDistance)
+                continue;
+
+            _smallestDistance = _distanceFromArea;
+            _closestArea = _area;
+        }
+
+        if (!_closestArea)
+            return;
+
+        float _angle = Mathf.Atan2(_closestArea.transform.position.y - playerTransform.position.y, _closestArea.transform.position.x - playerTransform.position.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, _angle - 90);
     }
 
-    public void InitValues(ColisArea _colisTargetArea)
+    public void InitValues(ColisType _colisType)
     {
         playerTransform = GameObject.FindGameObjectsWithTag("Player").FirstOrDefault().transform;
-        colisTargetArea = _colisTargetArea;
+        correspondingAreas.Clear();
+        correspondingAreas.AddRange(FindObjectsOfType<ColisArea>().Where(_area => _area.GetColisType == _colisType));
     }
 
 }

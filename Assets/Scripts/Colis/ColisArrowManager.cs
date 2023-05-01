@@ -13,8 +13,11 @@ public class ColisArrowManager : CoolSingleton<ColisArrowManager>
 
     public void CreateNewArrowForColis(Colis _colis)
     {
+        if (!colisArrowDictionnary.ContainsKey(_colis))
+            return;
+
         ColisArrow _newArrow = Instantiate(colisArrowPrefab, transform);
-        _newArrow.InitValues(_colis.FinalDestination);
+        _newArrow.InitValues(_colis.GetColisType);
 
         colisArrowDictionnary.Add(_colis, _newArrow);
     }
