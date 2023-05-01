@@ -9,6 +9,7 @@ public class PlayerInputs : ScriptableObject
     #region Fields and Properties
     public InputAction AccelerationInput;
     public InputAction DirectionInput;
+    public InputAction DropCartInput;
     #endregion
 
     #region Methods
@@ -16,12 +17,14 @@ public class PlayerInputs : ScriptableObject
     {
         AccelerationInput.Enable();
         DirectionInput.Enable();
+        DropCartInput.Enable();
     }
 
     public void DisableInputs()
     {
         AccelerationInput.Disable();
-        DirectionInput.Disable(); 
+        DirectionInput.Disable();
+        DropCartInput.Disable(); 
     }
     #endregion
 

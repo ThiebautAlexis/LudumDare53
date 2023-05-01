@@ -8,6 +8,7 @@ public class ColisCart : Movable
 
     [SerializeField] private float distanceFrompreviousCart = .25f;
     [SerializeField] private Movable linkedCart;
+    [SerializeField] private Colis ownColis;
 
     protected override void ComputeVelocity()
     {
@@ -42,7 +43,7 @@ public class ColisCart : Movable
 
     protected override void RefreshRotation()
     {
-        if (movement.magnitude <= attributes.MinMagnitudeRotation) return;
+        if (!linkedCart || movement.magnitude <= attributes.MinMagnitudeRotation) return;
         Quaternion _rot = Quaternion.LookRotation(Vector3.forward, Vector2.Perpendicular(linkedCart.Rigidbody.position - Rigidbody.position));
         transform.rotation = _rot;
     }
@@ -52,5 +53,11 @@ public class ColisCart : Movable
     public void AttachCartTo(Movable _jointAttachment)
     {
         linkedCart = _jointAttachment;
+    }
+
+    public void ReleaseCart()
+    {
+        AttachCartTo(null);
+        ownColis.Release();
     }
 }

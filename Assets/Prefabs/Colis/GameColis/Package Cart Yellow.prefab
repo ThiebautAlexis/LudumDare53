@@ -150,7 +150,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 98f58666444ae1c4cbfa8a8589daa99d, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -190,7 +190,7 @@ GameObject:
   - component: {fileID: 3940021485669715031}
   - component: {fileID: 3940021485669715024}
   m_Layer: 0
-  m_Name: Package Cart
+  m_Name: Package Cart Yellow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -243,6 +243,7 @@ MonoBehaviour:
   attachPoint: {fileID: 7378912915861404343}
   distanceFrompreviousCart: 0.25
   linkedCart: {fileID: 0}
+  ownColis: {fileID: 3289001331950672286}
 --- !u!50 &3940021485669715031
 Rigidbody2D:
   serializedVersion: 4
@@ -364,7 +365,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8679245, g: 0.8211329, b: 0.36436453, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -439,7 +440,7 @@ MonoBehaviour:
   colisTimerUI: {fileID: 1796275694}
   colisCart: {fileID: 3940021485669715030}
   triggerCollider: {fileID: 5317086252695202133}
-  currentColisType: 0
+  currentColisType: 1
 --- !u!1 &7904353608584455376
 GameObject:
   m_ObjectHideFlags: 0

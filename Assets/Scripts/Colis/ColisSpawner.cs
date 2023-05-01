@@ -1,13 +1,16 @@
 using System.Collections.Generic;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 
-public class ColisSpawner : MonoBehaviour
+public class ColisSpawner : Trigger
 {
     public bool AvailableForSpawn { get; private set; } = true;
 
     [SerializeField] private Vector2 colisSpawnPosition;
 
-    [SerializeField] private List<Colis> allColis;
+    [SerializeField] private List<ColisCart> allColis;
+
+    public bool HasPlayerNearby { get; private set; } = false;
 
 
     private void OnDrawGizmosSelected()
@@ -17,14 +20,30 @@ public class ColisSpawner : MonoBehaviour
     }
 
 
-    public Colis SpawnColis()
+    public override void OnEnter(Movable _movable)
     {
-        Colis _colisToSpawn = allColis[Random.Range(0, allColis.Count)];
+        base.OnEnter(_movable);
+
+        if(_movable.GetComponent<PlayerController>())
+            HasPlayerNearby = true;
+    }
+
+    public override void OnExit(Movable _movable)
+    {
+        base.OnExit(_movable);
+
+        if (_movable.GetComponent<PlayerController>())
+            HasPlayerNearby = false;
+    }
+
+    public ColisCart SpawnColis()
+    {
+        ColisCart _colisToSpawn = allColis[Random.Range(0, allColis.Count)];
 
         if (!_colisToSpawn)
             return null;
 
-        Colis _spawnedColis = Instantiate(_colisToSpawn, (Vector2)transform.position + colisSpawnPosition, Quaternion.identity);
+        ColisCart _spawnedColis = Instantiate(_colisToSpawn, (Vector2)transform.position + colisSpawnPosition, Quaternion.identity);
         _spawnedColis.transform.parent = transform;
 
         AvailableForSpawn = false;

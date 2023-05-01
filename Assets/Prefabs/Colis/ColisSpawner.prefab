@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3522250766630201233}
   - component: {fileID: 3522250766630201234}
-  m_Layer: 0
+  - component: {fileID: 665012350}
+  m_Layer: 7
   m_Name: ColisSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,4 +47,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colisSpawnPosition: {x: 0, y: 0}
   allColis:
-  - {fileID: 4059790891799537721, guid: b142b9aee273ebf48b4db9729f324d5c, type: 3}
+  - {fileID: 3940021485669715030, guid: b1736e95928c5d242b18f85d0ad662b6, type: 3}
+  - {fileID: 3940021485669715030, guid: d806eefdb99fc1a46962b01b4eb60606, type: 3}
+  - {fileID: 3940021485669715030, guid: f35f06b791834b44580e4b95c0fcd9da, type: 3}
+--- !u!58 &665012350
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3522250766630201235}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1

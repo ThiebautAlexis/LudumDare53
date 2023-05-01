@@ -46,3 +46,20 @@ MonoBehaviour:
       m_Action: Direction Input
       m_Flags: 0
     m_Flags: 0
+  DropCartInput:
+    m_Name: Drop Cart Input
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 7f8bae23-640c-405e-a94b-7d2e719e2628
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 64f2518b-e6b1-4161-9834-3fc72fb605ac
+      m_Path: <Gamepad>/buttonSouth
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Drop Cart Input
+      m_Flags: 0
+    m_Flags: 0

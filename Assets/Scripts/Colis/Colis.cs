@@ -2,26 +2,24 @@ using CoolFramework.Core;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
-public class Colis : CoolBehaviour, IUpdate
+public class Colis : Trigger, IUpdate
 {
     public override UpdateRegistration UpdateRegistration => UpdateRegistration.Init | UpdateRegistration.Update;
 
     [SerializeField] private float colisDurationInSeconds = 60;
     [SerializeField] private ColisTimerUI colisTimerUI;
+    [SerializeField] private ColisCart colisCart;
+    [SerializeField] private Collider2D triggerCollider;
+    [SerializeField] private ColisType currentColisType;
+    public ColisType GetColisType { get { return currentColisType; } }
     private float colisCurrentDurationInSeconds;
     private ColisSpawner spawnOrigin;
-    public ColisArea FinalDestination { get ; private set; }
 
     protected override void OnInit()
     {
         base.OnInit();
 
         spawnOrigin = GetComponentInParent<ColisSpawner>();
-
-        //DEBUG
-        //InvokeRepeating("Pickup", 0, 4);
-
-        //InvokeRepeating("Release", 2, 4);
     }
 
     void IUpdate.Update()
@@ -34,18 +32,14 @@ public class Colis : CoolBehaviour, IUpdate
             Timeout();
     }
 
-    private void OnDrawGizmosSelected()
+    public override void OnEnter(Movable _movable)
     {
-        if (!FinalDestination)
+        base.OnEnter(_movable);
+
+        if (!_movable.GetComponent<PlayerController>())
             return;
 
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawLine(transform.position, FinalDestination.transform.position);
-    }
-
-    public void RegisterDestination(ColisArea _destination)
-    {
-        FinalDestination = _destination;
+        Pickup();
     }
 
     public void Pickup()
@@ -54,30 +48,34 @@ public class Colis : CoolBehaviour, IUpdate
         {
             spawnOrigin.ColisPickedUp();
             spawnOrigin = null;
-            transform.parent = null;
+            colisCart.transform.parent = null;
+            triggerCollider.enabled = false;
         }
         ColisArrowManager.Instance.CreateNewArrowForColis(this);
+        ColisCartManager.Instance.AddNewColisCart(colisCart);
+
+        //Invoke("Release", 5);
     }
 
     public void Release()
     {
+        triggerCollider.enabled = true;
         ColisArrowManager.Instance.RemoveArrowForColis(this);
-
     }
 
     public void Timeout()
     {
         SupervisorManager.Instance.RegisterStrike(true);
-        Destroy(this.gameObject);
+        ColisArrowManager.Instance.RemoveArrowForColis(this);
+        ColisCartManager.Instance.RemoveColisCart(colisCart);
+        Destroy(transform.parent.gameObject, .01f);
     }
 
     public void Delivered()
     {
-        // temp
-        GetComponent<Collider2D>().enabled = false;
-        GetComponent<Rigidbody2D>().isKinematic = true;
-        GetComponent<Rigidbody2D>().velocity = Vector3.zero;
-        Destroy(this.gameObject, 1.5f);
+        ColisArrowManager.Instance.RemoveArrowForColis(this);
+        ColisCartManager.Instance.RemoveColisCart(colisCart);
+        Destroy(transform.parent.gameObject);
     }
 
 
@@ -90,4 +88,11 @@ public class Colis : CoolBehaviour, IUpdate
 
         ColisArrowManager.Instance.RemoveArrowForColis(this);
     }
+}
+
+public enum ColisType
+{
+    Red,
+    Yellow,
+    Blue
 }
