@@ -651,6 +651,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colisArrowPrefab: {fileID: 7376608160006093363, guid: a61c60b35b1473643b8cf633a7525bc4, type: 3}
+  colisCallerArrowPrefab: {fileID: 4954218926968744773, guid: b9d39cdf89c3c864889e2d7cfa2bfeeb, type: 3}
 --- !u!1 &6993544688135563238
 GameObject:
   m_ObjectHideFlags: 0
@@ -1099,18 +1100,18 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 5
-      inSlope: 0
-      outSlope: 0
+      value: 1
+      inSlope: 0.018333333
+      outSlope: 0.018333333
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 1
-      value: 5
-      inSlope: 0
-      outSlope: 0
+      time: 600
+      value: 12
+      inSlope: 0.018333333
+      outSlope: 0.018333333
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
