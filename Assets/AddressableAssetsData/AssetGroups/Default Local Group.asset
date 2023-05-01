@@ -33,6 +33,22 @@ MonoBehaviour:
     m_Address: Assets/Scenes/Hogu.unity
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: c01babe69e731eb4eac3f8970ec4a917
+    m_Address: Assets/Scenes/Bundles/SceneBundle_Tutorial.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 470997fea61d561449643b6943d5c6d0
+    m_Address: Assets/Scenes/Tuto_Scene.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3b5a9c1e55f079b4c9da63f83241386b
+    m_Address: Assets/Scenes/Bundles/SceneBundle_MainMenu.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6644d348369808f41be4373f25f2ff41
+    m_Address: Assets/Scenes/Main_Menu.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 0a039f5dd772e6b458527b0985523f87, type: 2}
   m_SchemaSet:
