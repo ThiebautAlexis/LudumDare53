@@ -36,7 +36,6 @@ public class PlayerMovable : Movable
 
     public void SetAttributes(MovableAttributes _attributes)
     {
-        Debug.Log("hello?"); 
         attributes = _attributes; 
     }
     #endregion
