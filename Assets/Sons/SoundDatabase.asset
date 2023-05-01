@@ -12,4 +12,130 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 657529d96f968024da237237e55850bb, type: 3}
   m_Name: SoundDatabase
   m_EditorClassIdentifier: 
-  allSounds: []
+  allSounds:
+  - name: Rang DD
+    Clips:
+    - {fileID: 8300000, guid: 193231ae0b34fd849b7e55ad4d35ac2d, type: 3}
+    Volume: 0.151
+    Loop: 0
+    MixerGroup: {fileID: 0}
+  - name: Rang CD
+    Clips:
+    - {fileID: 8300000, guid: 17cd12d23d30e434d892b2883e134c12, type: 3}
+    Volume: 0.124
+    Loop: 0
+    MixerGroup: {fileID: 0}
+  - name: Rang BD
+    Clips:
+    - {fileID: 8300000, guid: 7270b6670af99c444ad832e09a0752de, type: 3}
+    Volume: 0.102
+    Loop: 0
+    MixerGroup: {fileID: 0}
+  - name: Rang AD
+    Clips:
+    - {fileID: 8300000, guid: cebeea4e82c77eb4485bc1044a0a1972, type: 3}
+    Volume: 0
+    Loop: 0
+    MixerGroup: {fileID: 0}
+  - name: Rang SD
+    Clips:
+    - {fileID: 8300000, guid: 2eb05100ebfa3ff4fb24dbce0d3d6675, type: 3}
+    Volume: 0
+    Loop: 0
+    MixerGroup: {fileID: 0}
+  - name: Rang SSD
+    Clips:
+    - {fileID: 8300000, guid: eff81e91591cd8548820691ca65ab735, type: 3}
+    Volume: 0
+    Loop: 0
+    MixerGroup: {fileID: 0}
+  - name: Rang DK
+    Clips:
+    - {fileID: 8300000, guid: 6c8e40be36209704db8c2dcfebc676d8, type: 3}
+    Volume: 0
+    Loop: 0
+    MixerGroup: {fileID: 0}
+  - name: Drift_King_Ecran_Titre
+    Clips:
+    - {fileID: 8300000, guid: daf6a76ee6ced704f86ac3d0512453e0, type: 3}
+    Volume: 0.102
+    Loop: 0
+    MixerGroup: {fileID: 0}
+  - name: Voiture_Drift
+    Clips:
+    - {fileID: 8300000, guid: 48c85a50b7e4f714db7e57ab65194f53, type: 3}
+    Volume: 0.138
+    Loop: 1
+    MixerGroup: {fileID: 0}
+  - name: Voiture_Moteur_Start
+    Clips:
+    - {fileID: 8300000, guid: cb1dd72ff221f7e4d8ae415df021e846, type: 3}
+    Volume: 0.08
+    Loop: 0
+    MixerGroup: {fileID: 0}
+  - name: Voiture_Moteur_Loop
+    Clips:
+    - {fileID: 8300000, guid: 193231ae0b34fd849b7e55ad4d35ac2d, type: 3}
+    Volume: 0
+    Loop: 1
+    MixerGroup: {fileID: 0}
+  - name: Rang_Up
+    Clips:
+    - {fileID: 8300000, guid: 57b205a061871c44ba0c690ed5d26ce6, type: 3}
+    Volume: 0.116
+    Loop: 0
+    MixerGroup: {fileID: 0}
+  - name: Strike
+    Clips:
+    - {fileID: 8300000, guid: 7ca5f369251812b46ba7b5da825d27c3, type: 3}
+    Volume: 0.054
+    Loop: 0
+    MixerGroup: {fileID: 0}
+  - name: Tricks_Nice
+    Clips:
+    - {fileID: 8300000, guid: 835daf324ad55134c8a8e559ae03cc88, type: 3}
+    Volume: 0.111
+    Loop: 0
+    MixerGroup: {fileID: 0}
+  - name: Tricks_Clean
+    Clips:
+    - {fileID: 8300000, guid: 2f3b142da756160458d83554d190febb, type: 3}
+    Volume: 0.075
+    Loop: 0
+    MixerGroup: {fileID: 0}
+  - name: Tricks_Tactical
+    Clips:
+    - {fileID: 8300000, guid: 5847dd1e6361d524281b1f6d154f85ff, type: 3}
+    Volume: 0.116
+    Loop: 0
+    MixerGroup: {fileID: 0}
+  - name: Tricks_Amazing
+    Clips:
+    - {fileID: 8300000, guid: bc5ae3df288ea504eb5653b39d3751b0, type: 3}
+    Volume: 0.088
+    Loop: 0
+    MixerGroup: {fileID: 0}
+  - name: Tricks_Sugoi
+    Clips:
+    - {fileID: 8300000, guid: a83694e88fc642942bb17929bfa9b682, type: 3}
+    Volume: 0.102
+    Loop: 0
+    MixerGroup: {fileID: 0}
+  - name: Bonk_Manager
+    Clips:
+    - {fileID: 8300000, guid: f29b486b54611364e98b48cb2bc0c4da, type: 3}
+    Volume: 0
+    Loop: 0
+    MixerGroup: {fileID: 0}
+  - name: Voiture_Bonk
+    Clips:
+    - {fileID: 8300000, guid: a47c4e7bf6edc2c4e8d24cf6d7e606e6, type: 3}
+    Volume: 0.138
+    Loop: 0
+    MixerGroup: {fileID: 0}
+  - name: Rang_Down
+    Clips:
+    - {fileID: 8300000, guid: b35d87f66d92c17469290d00d4fad690, type: 3}
+    Volume: 0.138
+    Loop: 0
+    MixerGroup: {fileID: 0}
