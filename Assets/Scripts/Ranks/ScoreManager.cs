@@ -57,6 +57,8 @@ public class ScoreManager : CoolSingleton<ScoreManager>, IUpdate
         if (CurrentRank == Ranks.DK)
             return;
 
+        SoundManager.Instance.PlaySound("Rang_Up", this.gameObject);
+
         currentCombo += _amount;
 
         switch (CurrentRank)
@@ -123,6 +125,8 @@ public class ScoreManager : CoolSingleton<ScoreManager>, IUpdate
 
         if(CurrentRank != Ranks.DD)
         {
+            SoundManager.Instance.PlaySound("Rang_Down", this.gameObject);
+
             CurrentRank = (Ranks)((int)CurrentRank - 1);
 
             if(CurrentRank == Ranks.SSD)
