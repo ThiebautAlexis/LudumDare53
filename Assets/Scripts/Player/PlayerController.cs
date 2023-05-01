@@ -9,6 +9,7 @@ public class PlayerController : CoolBehaviour, IInputUpdate
 
     #region Fields and Properties
     [SerializeField] private PlayerMovable playerMovable;
+    [SerializeField] private ColisCartManager colisCartManager;
     [SerializeField] private PlayerInputs playerInputs; 
     #endregion
 
@@ -26,6 +27,7 @@ public class PlayerController : CoolBehaviour, IInputUpdate
         playerInputs.EnableInputs();
         playerInputs.AccelerationInput.started += StartAcceleration;
         playerInputs.AccelerationInput.canceled += StopAcceleration;
+        playerInputs.DropCartInput.performed += colisCartManager.ReleaseLastColisCart;
     }
 
 
@@ -33,6 +35,7 @@ public class PlayerController : CoolBehaviour, IInputUpdate
     {
         playerInputs.AccelerationInput.started -= StartAcceleration;
         playerInputs.AccelerationInput.canceled -= StopAcceleration;
+        playerInputs.DropCartInput.performed -= colisCartManager.ReleaseLastColisCart;
         playerInputs.DisableInputs();
         base.DisableBehaviour();
     }

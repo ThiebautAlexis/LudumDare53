@@ -160,6 +160,7 @@ GameObject:
   - component: {fileID: 4745153978307625958}
   - component: {fileID: 4745153978307625957}
   - component: {fileID: 1150516591222197280}
+  - component: {fileID: 8742906579141874990}
   - component: {fileID: 4745153978307625954}
   - component: {fileID: 4745153978307625955}
   m_Layer: 0
@@ -199,6 +200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerMovable: {fileID: 1150516591222197280}
+  colisCartManager: {fileID: 8742906579141874990}
   playerInputs: {fileID: 11400000, guid: 954933f012dcd30478685854ca3f33d1, type: 2}
   magnitude: 0
   direction: {x: 0, y: 0}
@@ -228,6 +230,20 @@ MonoBehaviour:
     m_Bits: 192
   bounciness: 10
   attachPoint: {fileID: 3048228272431774522}
+--- !u!114 &8742906579141874990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4745153978307625959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd2d31e1bcfc3774592b39229085a01a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMovable: {fileID: 1150516591222197280}
+  allLinkedColisCart: []
 --- !u!50 &4745153978307625954
 Rigidbody2D:
   serializedVersion: 4

@@ -3,20 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class ColisCartManager : CoolSingleton<ColisCartManager>
+public class ColisCartManager : CoolBehaviour
 {
-    public override UpdateRegistration UpdateRegistration => UpdateRegistration.Init;
-
-    [SerializeField] private PlayerInputs playerInputs;
     [SerializeField] private Movable playerMovable;
     [SerializeField] private List<ColisCart> allLinkedColisCart = new List<ColisCart>();
-
-    protected override void OnInit()
-    {
-        base.OnInit();
-
-        playerInputs.DropCartInput.started += ReleaseLastColisCart;
-    }
 
     public void AddNewColisCart(ColisCart _colisCart)
     {
@@ -60,7 +50,7 @@ public class ColisCartManager : CoolSingleton<ColisCartManager>
             allLinkedColisCart[_colisCartIndex].AttachCartTo(allLinkedColisCart[_colisCartIndex - 1]);
     }
 
-    void ReleaseLastColisCart(InputAction.CallbackContext _ctx)
+    public void ReleaseLastColisCart(InputAction.CallbackContext _ctx)
     {
         if (allLinkedColisCart.Count <= 0)
             return;

@@ -15,11 +15,13 @@ public class Colis : Trigger, IUpdate
     private float colisCurrentDurationInSeconds;
     private ColisSpawner spawnOrigin;
 
+    private ColisCartManager _manager; 
+
     protected override void OnInit()
     {
         base.OnInit();
-
-        spawnOrigin = GetComponentInParent<ColisSpawner>();
+        if(transform.parent != null)
+            spawnOrigin = GetComponentInParent<ColisSpawner>();
     }
 
     void IUpdate.Update()
@@ -36,10 +38,10 @@ public class Colis : Trigger, IUpdate
     {
         base.OnEnter(_movable);
 
-        if (!_movable.GetComponent<PlayerController>())
-            return;
-
-        Pickup();
+        if (_movable.TryGetComponent(out _manager))
+        {
+            Pickup();
+        }
     }
 
     public void Pickup()
@@ -48,13 +50,11 @@ public class Colis : Trigger, IUpdate
         {
             spawnOrigin.ColisPickedUp();
             spawnOrigin = null;
-            colisCart.transform.parent = null;
-            triggerCollider.enabled = false;
         }
+        colisCart.transform.parent = null;
+        triggerCollider.enabled = false;
         ColisArrowManager.Instance.CreateNewArrowForColis(this);
-        ColisCartManager.Instance.AddNewColisCart(colisCart);
-
-        //Invoke("Release", 5);
+        _manager.AddNewColisCart(colisCart);
     }
 
     public void Release()
@@ -67,14 +67,14 @@ public class Colis : Trigger, IUpdate
     {
         SupervisorManager.Instance.RegisterStrike(true);
         ColisArrowManager.Instance.RemoveArrowForColis(this);
-        ColisCartManager.Instance.RemoveColisCart(colisCart);
+        if(_manager) _manager.RemoveColisCart(colisCart);
         Destroy(transform.parent.gameObject, .01f);
     }
 
     public void Delivered()
     {
         ColisArrowManager.Instance.RemoveArrowForColis(this);
-        ColisCartManager.Instance.RemoveColisCart(colisCart);
+        _manager.RemoveColisCart(colisCart);
         Destroy(transform.parent.gameObject);
     }
 
@@ -85,7 +85,6 @@ public class Colis : Trigger, IUpdate
             spawnOrigin.ColisPickedUp();
 
         ColisManager.Instance.RemoveColis();
-
         ColisArrowManager.Instance.RemoveArrowForColis(this);
     }
 }
