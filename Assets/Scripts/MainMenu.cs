@@ -10,6 +10,7 @@ public class MainMenu : CoolBehaviour
     public override UpdateRegistration UpdateRegistration => UpdateRegistration.Init;
 
     [SerializeField] private GameObject creditsMenu;
+    [SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject defaultCreditObjectSelected;
     [SerializeField] private GameObject defaultMenuObjectSelected;
     [SerializeField] private EventSystem eventSystem;
@@ -34,12 +35,14 @@ public class MainMenu : CoolBehaviour
     public void ShowCredits()
     {
         creditsMenu.SetActive(true);
+        mainMenu.SetActive(false);
         eventSystem.SetSelectedGameObject(defaultCreditObjectSelected);
     }
 
     public void HideCredits()
     {
         creditsMenu.SetActive(false);
+        mainMenu.SetActive(true);
         eventSystem.SetSelectedGameObject(defaultMenuObjectSelected);
     }
 
