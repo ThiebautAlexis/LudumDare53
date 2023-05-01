@@ -54,7 +54,7 @@ public class PlayerController : CoolBehaviour, IInputUpdate
 
         direction = playerInputs.DirectionInput.ReadValue<Vector2>();
 
-        playerMovable.AddMovement(direction.normalized);
+        playerMovable.AddMovement(direction.normalized * magnitude);
         //playerMovable.SetMovementMagnitude(magnitude); 
     }
     #endregion 

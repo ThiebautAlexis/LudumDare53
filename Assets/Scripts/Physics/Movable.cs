@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using CoolFramework.Core;
@@ -67,9 +67,11 @@ public abstract class Movable : CoolBehaviour, IUpdate, IDynamicUpdate
             List<RaycastHit2D> _buffer = collisionSystem.PerformCollisions(Movement, Forces);
             Vector2 _displacement = rigidbody.position - _lastPosition;
             OnAppliedVelocity(Velocity, _displacement, _buffer); 
+            RefreshRotation(_displacement);  
         }
 
         UpdatePosition();
+        lastMovement.Set(movement.x, movement.y);
         movement.Set(0f, 0f);
     }
 
@@ -101,7 +103,6 @@ public abstract class Movable : CoolBehaviour, IUpdate, IDynamicUpdate
         driftForce = Vector2.Dot(-transform.up, movement) * attributes.InertiaCoefficient;
         AddForce(transform.up * driftForce);
 
-        lastMovement.Set(movement.x, movement.y);
         forces = Vector2.ClampMagnitude(forces, currentSpeed);
     }
 
@@ -113,7 +114,6 @@ public abstract class Movable : CoolBehaviour, IUpdate, IDynamicUpdate
     private void UpdatePosition()
     {
         transform.position = rigidbody.position;
-        RefreshRotation(); 
         RefreshOverlaps();
     }
 
@@ -151,7 +151,6 @@ public abstract class Movable : CoolBehaviour, IUpdate, IDynamicUpdate
                     }
                 }
             }
-            else Debug.Log("Try push here"); 
         }
 
         // Exit from no more overlapping triggers.
@@ -193,9 +192,9 @@ public abstract class Movable : CoolBehaviour, IUpdate, IDynamicUpdate
         }
     }
 
-    protected virtual void RefreshRotation()
+    protected virtual void RefreshRotation(Vector2 _displacement)
     {
-        if (movement.magnitude <= attributes.MinMagnitudeRotation) return;
+        if (movement.magnitude <= attributes.MinMagnitudeRotation || _displacement.magnitude <= (attributes.MinMagnitudeRotation * Time.deltaTime) ) return;
         Quaternion _rot = Quaternion.LookRotation(Vector3.forward, Vector2.Perpendicular(movement));
         transform.rotation = _rot;
     }

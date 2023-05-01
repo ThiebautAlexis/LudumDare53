@@ -41,9 +41,9 @@ public class ColisCart : Movable
         Gizmos.DrawLine(transform.position, (Vector2)transform.position + forces);
     }
 
-    protected override void RefreshRotation()
+    protected override void RefreshRotation(Vector2 _displacement)
     {
-        if (!linkedCart || movement.magnitude <= attributes.MinMagnitudeRotation) return;
+        if (!linkedCart || movement.magnitude <= attributes.MinMagnitudeRotation || _displacement.magnitude <= attributes.MinMagnitudeRotation) return;
         Quaternion _rot = Quaternion.LookRotation(Vector3.forward, Vector2.Perpendicular(linkedCart.Rigidbody.position - Rigidbody.position));
         transform.rotation = _rot;
     }

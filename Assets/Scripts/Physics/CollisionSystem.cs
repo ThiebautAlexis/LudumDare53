@@ -76,8 +76,9 @@ public class CollisionSystem
             RegisterCastInfos(_amount, _collider);
             for (int i = _start; i < _start + _amount; i++)
             {
-                if (buffer[i].normal.x != 0) _velocity.x = 0f;
-                if (buffer[i].normal.y != 0) _velocity.y = 0f;
+                _velocity += buffer[i].normal * (_distance + .001f);
+                /*if (buffer[i].normal.x != 0)*/
+                //if (buffer[i].normal.y != 0) _velocity.y = 0f;
                 //continue;
             }
         }
