@@ -91,9 +91,9 @@ public class Colis : Trigger, IUpdate
         if (spawnOrigin)
             spawnOrigin.ColisPickedUp();
 
-        ColisManager.Instance.RemoveColis();
-        ColisArrowManager.Instance.RemoveCallerArrowForColis(this);
-        ColisArrowManager.Instance.RemoveArrowForColis(this);
+        ColisManager.Instance?.RemoveColis();
+        ColisArrowManager.Instance?.RemoveCallerArrowForColis(this);
+        ColisArrowManager.Instance?.RemoveArrowForColis(this);
     }
 }
 

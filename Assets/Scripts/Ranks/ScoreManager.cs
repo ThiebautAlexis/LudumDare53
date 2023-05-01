@@ -30,6 +30,7 @@ public class ScoreManager : CoolSingleton<ScoreManager>, IUpdate
     private float displayedScore = 0;
     public Ranks CurrentRank { get; private set; } = Ranks.DD;
     private int currentCombo = 0;
+    private bool canReceiveInfo = true;
 
     private void Start()
     {
@@ -43,17 +44,27 @@ public class ScoreManager : CoolSingleton<ScoreManager>, IUpdate
         scoreText.text = ((int)displayedScore).ToString();
     }
 
+    public void BlockInfos() => canReceiveInfo = false;
+
     public void AddScore(int _amount)
     {
+        if (!canReceiveInfo)
+            return;
+
         playerScore = (int)Mathf.Clamp(playerScore + _amount, 0, Mathf.Infinity);
     }
     public void RemoveScore(int _amount)
     {
+        if (!canReceiveInfo)
+            return;
         playerScore = (int)Mathf.Clamp(playerScore - _amount, 0, Mathf.Infinity);
     }
 
     public void AugmentCombo(int _amount)
     {
+        if (!canReceiveInfo)
+            return;
+
         if (CurrentRank == Ranks.DK)
             return;
 
@@ -121,6 +132,9 @@ public class ScoreManager : CoolSingleton<ScoreManager>, IUpdate
 
     public void BreakCombo()
     {
+        if (!canReceiveInfo)
+            return;
+
         currentCombo = 0;
 
         if(CurrentRank != Ranks.DD)
