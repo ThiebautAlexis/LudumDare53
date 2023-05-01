@@ -33,5 +33,11 @@ public class PlayerMovable : Movable
         currentSpeed = attributes.EvaluateSpeed(ref accelerationTime);
         base.ComputeVelocity();
     }
-    #endregion 
+
+    public void SetAttributes(MovableAttributes _attributes)
+    {
+        Debug.Log("hello?"); 
+        attributes = _attributes; 
+    }
+    #endregion
 }

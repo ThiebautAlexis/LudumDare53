@@ -11,7 +11,7 @@ public class DialogueTrigger : Trigger
         if(_movable.TryGetComponent(out PlayerController _playerController))
         {
             DialogueBox.Instance.ReadText(dialogue);
-            gameObject.SetActive(false);
+            this.enabled = false; 
         }
     }
 }
