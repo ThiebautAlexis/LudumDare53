@@ -32,11 +32,13 @@ public class ColisCartManager : CoolBehaviour
         if (!allLinkedColisCart.Contains(_colisCart))
             return;
 
+        // Remove if there is only 1 cart
         if (allLinkedColisCart.Count <= 1)
         {
             allLinkedColisCart.RemoveAt(0);
             return;
         }
+
 
         int _colisCartIndex = allLinkedColisCart.IndexOf(_colisCart);
 
@@ -44,9 +46,12 @@ public class ColisCartManager : CoolBehaviour
 
         allLinkedColisCart.RemoveAt(_colisCartIndex);
 
+        // Attach to player if it's the first of the collection
         if (_colisCartIndex == 0)
             allLinkedColisCart[_colisCartIndex].AttachCartTo(playerMovable);
-        else if(_colisCartIndex < allLinkedColisCart.Count - 1)
+
+        // bug ici ?
+        else if(_colisCartIndex < allLinkedColisCart.Count)
             allLinkedColisCart[_colisCartIndex].AttachCartTo(allLinkedColisCart[_colisCartIndex - 1]);
     }
 
