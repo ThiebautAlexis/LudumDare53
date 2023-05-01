@@ -65,11 +65,11 @@ public abstract class Movable : CoolBehaviour, IUpdate, IDynamicUpdate
         {
             Vector2 _lastPosition = rigidbody.position; 
             List<RaycastHit2D> _buffer = collisionSystem.PerformCollisions(Movement, Forces);
-            UpdatePosition();
             Vector2 _displacement = rigidbody.position - _lastPosition;
             OnAppliedVelocity(Velocity, _displacement, _buffer); 
         }
 
+        UpdatePosition();
         movement.Set(0f, 0f);
     }
 

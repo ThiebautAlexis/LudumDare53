@@ -38,6 +38,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 3975926883
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Decor
+    uniqueID: 680366605
+    locked: 0
+  - name: Props
+    uniqueID: 3932718901
+    locked: 0
+  - name: Dynamic
+    uniqueID: 2586465571
     locked: 0
