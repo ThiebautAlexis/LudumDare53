@@ -1,5 +1,4 @@
 using CoolFramework.Core;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,7 +12,7 @@ public class ColisArrowManager : CoolSingleton<ColisArrowManager>
 
     public void CreateNewArrowForColis(Colis _colis)
     {
-        if (!colisArrowDictionnary.ContainsKey(_colis))
+        if (colisArrowDictionnary.ContainsKey(_colis))
             return;
 
         ColisArrow _newArrow = Instantiate(colisArrowPrefab, transform);
