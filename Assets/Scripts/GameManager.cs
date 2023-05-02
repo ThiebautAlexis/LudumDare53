@@ -14,18 +14,20 @@ public class GameManager : CoolSingleton<GameManager>, IUpdate
     [SerializeField] private int mainMenuSceneIndex = 1;
 
     private float currentGametime = 0;
-    private bool isGameEnded = false;
+    public bool IsGameEnded { get; private set; } = false;
 
     protected override void OnInit()
     {
         base.OnInit();
 
         currentGametime = maxGameTimeInSeconds;
+
+        Background.Instance.SetCamera();
     }
 
     void IUpdate.Update()
     {
-        if (isGameEnded)
+        if (IsGameEnded)
             return;
 
         currentGametime -= Time.deltaTime;
@@ -39,6 +41,9 @@ public class GameManager : CoolSingleton<GameManager>, IUpdate
 
     private void TimeEnding()
     {
+        if (IsGameEnded)
+            return;
+
         switch (ScoreManager.Instance.CurrentRank)
         {
             case Ranks.DD:
@@ -70,7 +75,7 @@ public class GameManager : CoolSingleton<GameManager>, IUpdate
                 SoundManager.Instance.PlaySound("Rang DK", this.gameObject);
                 break;
         }
-        isGameEnded = true;
+        IsGameEnded = true;
 
         GameObject.FindGameObjectWithTag("Player").SetActive(false);
         ScoreManager.Instance.BlockInfos();
@@ -78,7 +83,10 @@ public class GameManager : CoolSingleton<GameManager>, IUpdate
 
     public void StrikeEnding()
     {
-        isGameEnded = true;
+        if (IsGameEnded)
+            return;
+
+        IsGameEnded = true;
 
         endingAnimator.SetTrigger("Strike");
         GameObject.FindGameObjectWithTag("Player").SetActive(false);

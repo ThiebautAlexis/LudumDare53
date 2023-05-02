@@ -12,6 +12,9 @@ public class ColisArrowCaller : CoolBehaviour, IUpdate
 
     void IUpdate.Update()
     {
+        if (!playerTransform)
+            return;
+
         float _angle = Mathf.Atan2(colisTransform.transform.position.y - playerTransform.position.y, colisTransform.transform.position.x - playerTransform.position.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, _angle - 90);
 
@@ -20,7 +23,7 @@ public class ColisArrowCaller : CoolBehaviour, IUpdate
     public void InitValues(Colis _colis)
     {
         colisTransform = _colis;
-        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        playerTransform = GameObject.FindGameObjectWithTag("Player")?.transform;
     }
 
 

@@ -27,6 +27,9 @@ public class SupervisorManager : CoolSingleton<SupervisorManager>
     /// <param name="_isForceStrike">true if the strike should pass no matter the sight of any Supervisor</param>
     public void RegisterStrike(bool _isForceStrike = false)
     {
+        if (GameManager.Instance.IsGameEnded)
+            return;
+
         if (!_isForceStrike && !CurrentActiveSupervisor && !CurrentActiveSupervisor.HasPlayerNearby)
             return;
 

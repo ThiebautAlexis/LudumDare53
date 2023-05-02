@@ -11,7 +11,8 @@ public class Colis : Trigger, IUpdate
     [SerializeField] private ColisCart colisCart;
     [SerializeField] private Collider2D triggerCollider;
     [SerializeField] private ColisType currentColisType;
-    [SerializeField] private SpriteRenderer triggerSprite; 
+    [SerializeField] private SpriteRenderer triggerSprite;
+    private bool isDead = false;
 
     public ColisType GetColisType { get { return currentColisType; } }
     private float colisCurrentDurationInSeconds;
@@ -72,9 +73,15 @@ public class Colis : Trigger, IUpdate
 
     public void Timeout()
     {
+        if (isDead)
+            return;
+
+        isDead = true;
+
         SupervisorManager.Instance.RegisterStrike(true);
         ColisArrowManager.Instance.RemoveArrowForColis(this);
-        if(_manager) _manager.RemoveColisCart(colisCart);
+        ColisArrowManager.Instance.RemoveCallerArrowForColis(this);
+        if (_manager) _manager.RemoveColisCart(colisCart);
         Destroy(transform.parent.gameObject, .01f);
     }
 

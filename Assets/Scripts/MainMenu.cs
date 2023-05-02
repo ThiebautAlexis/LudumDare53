@@ -26,6 +26,8 @@ public class MainMenu : CoolBehaviour
         base.OnInit();
 
         SoundManager.Instance.PlaySound("Drift_King_Ecran_Titre", this.gameObject);
+
+        Background.Instance.SetCamera();
     }
 
     public void StartTutoScene() => SimplifiedSceneManager.Instance.LoadScene(tutoSceneIndex); 
