@@ -2,10 +2,13 @@ using CoolFramework.Core;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ColisArrowCaller : CoolBehaviour, IUpdate
 {
     public override UpdateRegistration UpdateRegistration => UpdateRegistration.Init | UpdateRegistration.Update;
+
+    [SerializeField] private Image colisDurationIndicator;
 
     private Transform playerTransform;
     private Colis colisTransform;
@@ -26,6 +29,10 @@ public class ColisArrowCaller : CoolBehaviour, IUpdate
         playerTransform = GameObject.FindGameObjectWithTag("Player")?.transform;
     }
 
-
+    public void SetColisDuration(float _fillAmount, Color _color)
+    {
+        colisDurationIndicator.fillAmount = _fillAmount;
+        colisDurationIndicator.color = _color;
+    }
 
 }

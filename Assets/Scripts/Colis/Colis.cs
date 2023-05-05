@@ -8,6 +8,8 @@ public class Colis : Trigger, IUpdate
 
     [SerializeField] private float colisDurationInSeconds = 60;
     [SerializeField] private ColisTimerUI colisTimerUI;
+    public ColisTimerUI GetColisTimerUI { get { return colisTimerUI; } }
+
     [SerializeField] private ColisCart colisCart;
     [SerializeField] private Collider2D triggerCollider;
     [SerializeField] private ColisType currentColisType;
@@ -18,12 +20,12 @@ public class Colis : Trigger, IUpdate
     private float colisCurrentDurationInSeconds;
     private ColisSpawner spawnOrigin;
 
-    private ColisCartManager _manager; 
+    private ColisCartManager _manager;
 
     protected override void OnInit()
     {
         base.OnInit();
-        if(transform.parent != null)
+        if (transform.parent != null)
             spawnOrigin = GetComponentInParent<ColisSpawner>();
 
         ColisArrowManager.Instance.CreateNewCallerArrowForColis(this);
@@ -67,7 +69,7 @@ public class Colis : Trigger, IUpdate
     public void Release()
     {
         ColisArrowManager.Instance.CreateNewCallerArrowForColis(this);
-        triggerCollider.enabled = true; 
+        triggerCollider.enabled = true;
         ColisArrowManager.Instance.RemoveArrowForColis(this);
     }
 

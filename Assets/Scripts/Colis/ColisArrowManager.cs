@@ -48,6 +48,8 @@ public class ColisArrowManager : CoolSingleton<ColisArrowManager>
         ColisArrowCaller _newArrow = Instantiate(colisCallerArrowPrefab, transform);
         _newArrow.InitValues(_colis);
 
+        _colis.GetColisTimerUI.SetArrowCaller(_newArrow);
+
         colisCallerArrowDictionnary.Add(_colis, _newArrow);
     }
 
@@ -61,6 +63,8 @@ public class ColisArrowManager : CoolSingleton<ColisArrowManager>
 
         if (!_colisArrow)
             return;
+
+        _colis.GetColisTimerUI.SetArrowCaller(null);
 
         Destroy(_colisArrow.gameObject);
         colisCallerArrowDictionnary.Remove(_colis);

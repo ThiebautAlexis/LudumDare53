@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class ColisTimerUI : MonoBehaviour
 {
     [SerializeField] private Image timerImage;
+    [SerializeField] private ColisArrowCaller arrowCaller;
 
     [SerializeField] private float maxGreenColorTimeNormalized = .25f;
     [SerializeField] private float maxYellowColorTimeNormalized = .5f;
@@ -39,6 +40,9 @@ public class ColisTimerUI : MonoBehaviour
         }
         else
             BlinkRed();
+
+        if(arrowCaller)
+            arrowCaller.SetColisDuration(_normalizedTimer ,timerImage.color);
     }
 
     private void BlinkRed()
@@ -46,5 +50,10 @@ public class ColisTimerUI : MonoBehaviour
         currentBlinkValueNormalized = Mathf.PingPong(Time.time * blinkspeed, 1);
 
         timerImage.color = new Color(1, currentBlinkValueNormalized, currentBlinkValueNormalized, 1);
+    }
+
+    public void SetArrowCaller(ColisArrowCaller _arrowCaller)
+    {
+        arrowCaller = _arrowCaller;
     }
 }
