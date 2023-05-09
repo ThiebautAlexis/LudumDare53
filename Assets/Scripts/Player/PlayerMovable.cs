@@ -5,13 +5,18 @@ using UnityEngine;
 public class PlayerMovable : Movable
 {
     #region Fields and Properties
-    
+    [Header("Drift")]
+    [SerializeField] private bool isInDrift = false; 
+    [SerializeField] private TrailRenderer[] trails; 
+    [Header("Score")]
     [SerializeField] private float minDisplacementScore = 1.0f;
-    [SerializeField] private float scoringThreshold = 1.0f;
+    [SerializeField] private float minDriftThreshold = 1.0f;
+    [SerializeField] private float minDriftDuration = .25f;
     [SerializeField] private int baseScore = 100;
 
 
     [SerializeField] private float comboDuration = 1.25f;
+    [SerializeField] private float driftingTimer = 0f; 
     [SerializeField] private float comboTimer = 0f; 
 
     private float accelerationTime = 0f;
@@ -29,9 +34,26 @@ public class PlayerMovable : Movable
             isInAcceleration = value;
         }
     }
+
+    public bool IsInDrift
+    {
+        get
+        {
+            return isInDrift; 
+        }
+        private set
+        {
+            isInDrift= value;
+            for (int i = 0; i < trails.Length; i++)
+            {
+                trails[i].emitting = value;
+            }
+        }
+    }
     #endregion
 
     #region Methods
+    private int driftCount = 0; 
     protected override void OnAppliedVelocity(Vector2 _velocity, Vector2 _displacement, List<RaycastHit2D> _buffer)
     {
         base.OnAppliedVelocity(_velocity, _displacement, _buffer);
@@ -39,24 +61,48 @@ public class PlayerMovable : Movable
         if (_buffer.Count > 0)
         {
             ScoreManager.Instance.BreakCombo();
+            driftingTimer = 0f;
+            comboTimer = 0f;
+            IsInDrift = false;
+            driftCount = 0;
+            return; 
+        }
+        else if (_displacement.magnitude < minDisplacementScore * Time.deltaTime)
+        {
+            driftingTimer = 0f;
+            comboTimer = 0f;
+            IsInDrift = false;
+            driftCount = 0;
             return; 
         }
 
-        if (_displacement.magnitude < minDisplacementScore * Time.deltaTime)
+        if (isInDrift)
         {
-            comboTimer = 0f; 
-            return;
+            // Check is it is still drifting after a certain amount of time
+            driftingTimer += Time.deltaTime;
+            if(driftingTimer >= minDriftDuration)
+            {
+                driftCount++; 
+                driftingTimer = 0f; 
+                IsInDrift = Mathf.Abs(driftForce) > minDriftThreshold; 
+                // If not drifting anymore => Apply Score
+                if(!isInDrift)
+                {
+                    ScoreManager.Instance.AddScore(baseScore * driftCount);
+                    driftCount = 0;
+                }    
+            }
+
+            comboTimer += Time.deltaTime;
+            // If drifting for more than X seconds => Add Combo ! 
+            if (comboTimer > comboDuration)
+            {
+                comboTimer = 0f; 
+                ScoreManager.Instance.AugmentCombo(1); 
+            }
+            return; 
         }
-        if(Mathf.Abs(driftForce) > scoringThreshold)
-        {
-            ScoreManager.Instance.AddScore(baseScore);
-            comboTimer += Time.deltaTime; 
-        }
-        if(comboTimer > comboDuration)
-        {
-            ScoreManager.Instance.AugmentCombo(1);
-            comboTimer = 0f; 
-        }
+        IsInDrift = Mathf.Abs(driftForce) > minDriftThreshold;
     }
 
     protected override void ComputeVelocity()

@@ -119,3 +119,20 @@ MonoBehaviour:
       m_Action: Drop Cart Input
       m_Flags: 0
     m_Flags: 0
+  PauseInput:
+    m_Name: Pause Input
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: b1c38e16-6665-459e-8857-a10665e96da5
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: d5bb2c1a-e23d-414c-81a5-9980547221b9
+      m_Path: <Gamepad>/rightStickPress
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Pause Input
+      m_Flags: 0
+    m_Flags: 0

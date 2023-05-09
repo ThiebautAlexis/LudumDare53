@@ -98,7 +98,7 @@ public abstract class Movable : CoolBehaviour, IUpdate, IDynamicUpdate
     protected virtual void ComputeVelocity()
     {
         if (movement.magnitude == 0f) movement = transform.right; 
-        movement = attributes.DampRotation(transform.right, movement.normalized, currentSpeed * movementMagnitude);
+        movement = attributes.DampRotation(transform.right, movement.normalized, currentSpeed * movementMagnitude, transform.position);
         
         driftForce = Vector2.Dot(-transform.up, movement) * attributes.InertiaCoefficient;
         AddForce(transform.up * driftForce);
@@ -201,6 +201,7 @@ public abstract class Movable : CoolBehaviour, IUpdate, IDynamicUpdate
 
     private void OnDrawGizmos()
     {
+        return;
         Gizmos.color = Color.green;
         Gizmos.DrawLine(transform.position, (Vector2)transform.position + movement);
         Gizmos.color = Color.blue;

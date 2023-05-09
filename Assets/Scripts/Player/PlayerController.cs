@@ -56,6 +56,11 @@ public class PlayerController : CoolBehaviour, IInputUpdate
 
         playerMovable.AddMovement(direction.normalized * magnitude);
         //playerMovable.SetMovementMagnitude(magnitude); 
+
+#if UNITY_EDITOR
+        if (playerInputs.PauseInput.WasPressedThisFrame())
+            Debug.Break(); 
+#endif
     }
     #endregion 
 

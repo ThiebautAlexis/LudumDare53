@@ -39,10 +39,11 @@ public class MovableAttributes : ScriptableObject
         _duration = Mathf.Clamp(_duration, 0f, accelerationDuration);
         return accelerationCurve.Evaluate(_duration / accelerationDuration) * maxSpeed;
     }
-    public Vector2 DampRotation(Vector2 _currentRotation, Vector2 _movement, float _magnitude)
+
+    private Vector2 _velocity = Vector2.zero; 
+    public Vector2 DampRotation(Vector2 _currentRotation, Vector2 _movement, float _magnitude, Vector2 _origin)
     {
-        Vector2 _velocity = Vector2.zero; 
-        Vector2 _direction = Vector2.SmoothDamp(_currentRotation.normalized, _movement.normalized, ref _velocity, Time.deltaTime * rotationDamping);
+        Vector2 _direction = Vector2.SmoothDamp(_currentRotation.normalized, _movement.normalized, ref _velocity, rotationDamping);
         return _direction * _magnitude; 
     }
     #endregion

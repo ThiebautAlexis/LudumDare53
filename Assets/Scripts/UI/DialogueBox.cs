@@ -24,8 +24,8 @@ public class DialogueBox : CoolSingleton<DialogueBox>, IUpdate
         {
             dialogueText.SetText(string.Empty);
             currentData = _data;
-            TalkieWalkie.Instance.Display(currentData.ChartacterImage, currentData.Duration + pauseDuration * 2);
-            Pause();
+            TalkieWalkie.Instance.Display(currentData.ChartacterImage, currentData.Duration + pauseDuration);
+            //Pause();
             dialogueBoxObject.SetActive(true); 
             isDisplaying = true;
         }

@@ -10,6 +10,7 @@ public class PlayerInputs : ScriptableObject
     public InputAction AccelerationInput;
     public InputAction DirectionInput;
     public InputAction DropCartInput;
+    public InputAction PauseInput;
     #endregion
 
     #region Methods
@@ -18,6 +19,7 @@ public class PlayerInputs : ScriptableObject
         AccelerationInput.Enable();
         DirectionInput.Enable();
         DropCartInput.Enable();
+        PauseInput.Enable();
     }
 
     public void DisableInputs()
@@ -25,6 +27,7 @@ public class PlayerInputs : ScriptableObject
         AccelerationInput.Disable();
         DirectionInput.Disable();
         DropCartInput.Disable(); 
+        PauseInput.Disable();
     }
     #endregion
 
