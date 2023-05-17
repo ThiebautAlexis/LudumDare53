@@ -51,6 +51,7 @@ public class ScoreManager : CoolSingleton<ScoreManager>, IUpdate
         if (!canReceiveInfo)
             return;
 
+        SoundManager.Instance.PlaySound("Rang_Up", this.gameObject);
         playerScore = (int)Mathf.Clamp(playerScore + _amount, 0, Mathf.Infinity);
     }
     public void RemoveScore(int _amount)
@@ -68,7 +69,6 @@ public class ScoreManager : CoolSingleton<ScoreManager>, IUpdate
         if (CurrentRank == Ranks.DK)
             return;
 
-        SoundManager.Instance.PlaySound("Rang_Up", this.gameObject);
 
         currentCombo += _amount;
 

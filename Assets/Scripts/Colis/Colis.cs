@@ -90,7 +90,7 @@ public class Colis : Trigger, IUpdate
     public void Delivered()
     {
         ColisArrowManager.Instance.RemoveArrowForColis(this);
-        _manager.RemoveColisCart(colisCart);
+        if (_manager) _manager.RemoveColisCart(colisCart);
         Destroy(transform.parent.gameObject);
     }
 

@@ -16,7 +16,7 @@ public abstract class Movable : CoolBehaviour, IUpdate, IDynamicUpdate
 
     [Header("Movement")]
     [SerializeField] protected float currentSpeed = 0f; 
-    [SerializeField] protected Vector2 movement = Vector2.zero;
+    [SerializeField] protected internal Vector2 movement = Vector2.zero;
     [SerializeField] protected Vector2 lastMovement = Vector2.zero;
     private float movementMagnitude = 1f;
     [Header("Forces")]

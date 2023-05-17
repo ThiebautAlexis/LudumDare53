@@ -73,14 +73,16 @@ public class CollisionSystem
         int _start = buffer.Count;
         if (_amount > 0)
         {
+            Vector2 _normal = Vector2.zero ; 
             RegisterCastInfos(_amount, _collider);
             for (int i = _start; i < _start + _amount; i++)
             {
-                _velocity += buffer[i].normal * (_distance + .001f);
-                /*if (buffer[i].normal.x != 0)*/
-                //if (buffer[i].normal.y != 0) _velocity.y = 0f;
+                _normal += buffer[i].normal * (_distance + .001f);
+                if (buffer[i].normal.x != 0) _velocity.x = 0f;
+                if (buffer[i].normal.y != 0) _velocity.y = 0f;
                 //continue;
             }
+            _velocity += _normal;
         }
         _rigidbody.position += _velocity;
     }

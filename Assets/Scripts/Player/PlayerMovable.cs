@@ -80,18 +80,18 @@ public class PlayerMovable : Movable
         {
             // Check is it is still drifting after a certain amount of time
             driftingTimer += Time.deltaTime;
+            IsInDrift = forces.magnitude > minDriftThreshold && Mathf.Abs(driftForce) > 0f;
             if(driftingTimer >= minDriftDuration)
             {
                 driftCount++; 
-                driftingTimer = 0f; 
-                IsInDrift = Mathf.Abs(driftForce) > minDriftThreshold; 
-                // If not drifting anymore => Apply Score
-                if(!isInDrift)
-                {
-                    ScoreManager.Instance.AddScore(baseScore * driftCount);
-                    driftCount = 0;
-                }    
+                driftingTimer = 0f;
             }
+            // If not drifting anymore => Apply Score
+            if (!isInDrift && driftCount > 0)
+            {
+                ScoreManager.Instance.AddScore(baseScore * driftCount);
+                driftCount = 0;
+            }    
 
             comboTimer += Time.deltaTime;
             // If drifting for more than X seconds => Add Combo ! 
@@ -102,7 +102,7 @@ public class PlayerMovable : Movable
             }
             return; 
         }
-        IsInDrift = Mathf.Abs(driftForce) > minDriftThreshold;
+        IsInDrift = forces.magnitude > minDriftThreshold && Mathf.Abs(driftForce) > 0f;
     }
 
     protected override void ComputeVelocity()

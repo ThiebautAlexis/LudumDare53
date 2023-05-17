@@ -5581,7 +5581,7 @@ MonoBehaviour:
   minDriftThreshold: 0.18
   minDriftDuration: 0.25
   baseScore: 5
-  comboDuration: 1.25
+  comboDuration: 1
   driftingTimer: 0
   comboTimer: 0
 --- !u!114 &8742906579141874990

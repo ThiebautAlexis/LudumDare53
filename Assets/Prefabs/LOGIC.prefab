@@ -1261,12 +1261,12 @@ MonoBehaviour:
   fireAnimator: {fileID: 1125892326}
   rankLibrary: {fileID: 7108339969198208228, guid: 6db92da5a61980f439e7dd8172489f82, type: 3}
   scoreDisplaySpeed: 1000
-  comboRequirementCD: 20
-  comboRequirementBD: 25
-  comboRequirementAD: 30
-  comboRequirementSD: 35
-  comboRequirementSSD: 40
-  comboRequirementDK: 45
+  comboRequirementCD: 5
+  comboRequirementBD: 15
+  comboRequirementAD: 25
+  comboRequirementSD: 40
+  comboRequirementSSD: 55
+  comboRequirementDK: 70
   DDColor: {r: 0.9528302, g: 0.85787463, b: 0.79552335, a: 1}
   CDColor: {r: 0.19215688, g: 0.8000001, b: 0.31764707, a: 1}
   BDColor: {r: 0.37201852, g: 0.788841, b: 0.8301887, a: 1}
